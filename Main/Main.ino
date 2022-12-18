@@ -6,8 +6,8 @@
 
 #define ULTRASONIC_ECHO_PIN   A0
 #define ULTRASONIC_TRIG_PIN   A1
-#define IR_REMOTE_PIN         A2
-#define RIGHT_LINE_FOLLOW_IR  A3
+#define IR_RECEIVE_PIN        A2
+#define LEFT_LINE_FOLLOW_IR  A3
 #define SOUND_PIN             A4
 #define RIGHT_LINE_FOLLOW_IR  A5
 
@@ -30,6 +30,10 @@
 #define SERIAL_PORT           9600
 #define BLUETOOTH_PORT        9600
 
+#define FORWARD_BT_CHAR       'F'
+#define FORWARD_IR_REMOTE_CODE 
+#define FORWARD_CODE
+
 #define LOG                   false
 
 SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);                  // RX, TX
@@ -40,10 +44,8 @@ AF_DCMotor m2(DCMOTER_LEFT_BCAK, MOTOR12_64KHZ);
 AF_DCMotor m3(DCMOTER_RIGHT_FRONT, MOTOR34_64KHZ);
 AF_DCMotor m4(DCMOTER_RIGHT_BACK, MOTOR34_64KHZ);
 
-IRrecv irrecv(IR_REMOTE_PIN);
-
-decode_results results;
 Servo myservo;
+
 
 int state = 0;
 int flag = 0;
@@ -56,11 +58,11 @@ bool isAutomatic = false;
 
 
 void setup() {
-  //Serial.begin(SERIAL_PORT);
+  Serial.begin(SERIAL_PORT);
   Bluetooth.begin(BLUETOOTH_PORT);
   myservo.attach(SERVO_PIN_IN_USE);
   myservo.write(90);
-  irrecv.enableIRIn();
+  //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
 
   delay(2000);
   distance = readPing();
@@ -74,15 +76,15 @@ void setup() {
 }
 
 void loop() {
-  if (irrecv.decode(&results))// Returns 0 if no data ready, 1 if data ready.     
-{     
- int signalReceived = results.value;// Results of decoding are stored in result.value     
- Serial.println(" ");     
- Serial.print("Code: ");     
- Serial.println(results.value); //prints the value a a button press     
- Serial.println(" ");     
- irrecv.resume(); // Restart the ISR state machine and Receive the next value     
-}   
+  /*if (IrReceiver.decode())
+  {
+    //int signalReceived = IrReceiver.decodedIRData;
+    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
+    IrReceiver.printIRResultShort(&Serial);
+    //Serial.print("Code: "); Serial.print(signalReceived, HEX); Serial.println(",\n");
+    IrReceiver.resume();
+  }
+  return;*/
   //if(Serial.available() > 0){
   //command = Serial.read();
 
