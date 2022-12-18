@@ -1,30 +1,50 @@
 #include <SoftwareSerial.h>
+#include <IRremote.h>
 #include <AFMotor.h>
 #include <Servo.h>   
 #include <NewPing.h>
 
-#define TRIG_PIN A1
-#define ECHO_PIN A0
-#define MAX_DISTANCE 200 
-#define MAX_SPEED 201 // sets speed of DC  motors
-#define MAX_SPEED_OFFSET 20
-#define SERIAL_PORT 9600
-#define LOG true
-#define SERVO_PIN 10
+#define ULTRASONIC_ECHO_PIN   A0
+#define ULTRASONIC_TRIG_PIN   A1
+#define IR_REMOTE_PIN         A2
+#define RIGHT_LINE_FOLLOW_IR  A3
+#define SOUND_PIN             A4
+#define RIGHT_LINE_FOLLOW_IR  A5
+
+#define BLUETOOTH_TX          0
+#define BLUETOOTH_RX          1
+
+#define SERVO_PIN_FREE        9
+#define SERVO_PIN_IN_USE      10
+
+#define DCMOTER_LEFT_FRONT    1
+#define DCMOTER_LEFT_BCAK     2
+#define DCMOTER_RIGHT_FRONT   3
+#define DCMOTER_RIGHT_BACK    4
+
+#define REVERCE_DISTANCE      60
+#define MAX_DISTANCE          200 
+#define MAX_SPEED             150     // sets speed of DC  motors
+#define MAX_SPEED_INCREMENT   20
+
+#define SERIAL_PORT           9600
+#define BLUETOOTH_PORT        9600
+
+#define LOG                   false
+
+SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);                  // RX, TX
+NewPing sonar(ULTRASONIC_TRIG_PIN, ULTRASONIC_ECHO_PIN, MAX_DISTANCE); 
+
+AF_DCMotor m1(DCMOTER_LEFT_FRONT, MOTOR12_64KHZ); 
+AF_DCMotor m2(DCMOTER_LEFT_BCAK, MOTOR12_64KHZ);
+AF_DCMotor m3(DCMOTER_RIGHT_FRONT, MOTOR34_64KHZ);
+AF_DCMotor m4(DCMOTER_RIGHT_BACK, MOTOR34_64KHZ);
+
+Servo myservo; 
 
 int state = 0;
 int flag = 0;
 char command; 
-
-SoftwareSerial Bluetooth(1, 0); // RX, TX
-
-NewPing sonar(TRIG_PIN, ECHO_PIN, MAX_DISTANCE); 
-
-AF_DCMotor m1(1, MOTOR12_64KHZ); 
-AF_DCMotor m2(2, MOTOR12_64KHZ);
-AF_DCMotor m3(3, MOTOR34_64KHZ);
-AF_DCMotor m4(4, MOTOR34_64KHZ);
-Servo myservo;   
 
 boolean goesForward=false;
 int distance = 100;
@@ -34,10 +54,10 @@ bool isAutomatic = false;
 
 void setup() {
  //Serial.begin(SERIAL_PORT);
-  Bluetooth.begin(SERIAL_PORT);
-  
-  myservo.attach(SERVO_PIN);  
+  Bluetooth.begin(BLUETOOTH_PORT);
+  myservo.attach(SERVO_PIN_IN_USE);  
   myservo.write(90); 
+  
   delay(2000);
   distance = readPing();
   delay(100);
@@ -76,7 +96,7 @@ void loop() {
       isAutomatic = false;
       turnRight();
       break;
-   case 'D':
+   case 'S':
       isAutomatic = true;
       break;
    case '0':
@@ -136,7 +156,7 @@ void automatic() {
   int distanceL = 0;
   delay(1000);
  
-  if(distance<=25)
+  if(distance<=REVERCE_DISTANCE)
   {
    moveStop();
    delay(100);
