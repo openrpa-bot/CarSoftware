@@ -3,6 +3,7 @@
 #include <AFMotor.h>
 #include <Servo.h>
 #include <NewPing.h>
+#include "motormovement.h"
 
 #define ULTRASONIC_ECHO_PIN A0
 #define ULTRASONIC_TRIG_PIN A1
