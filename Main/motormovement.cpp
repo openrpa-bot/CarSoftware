@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "MotorMovement.h"
 
+
 MotorMovement::MotorMovement() {
     this->m1 = new AF_DCMotor(DCMOTER_LEFT_FRONT, MOTOR12_64KHZ);
     this->m2 = new AF_DCMotor(DCMOTER_LEFT_BCAK, MOTOR12_64KHZ);
@@ -17,9 +18,11 @@ MotorMovement::MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement) {
 }
 
 void MotorMovement::Stop() {
-  if (LOG) {
-    Serial.write("moveStop\n");
-  }
+  
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+  
   m1->run(RELEASE);
   m2->run(RELEASE);
   m3->run(RELEASE);
@@ -27,9 +30,11 @@ void MotorMovement::Stop() {
 }
 
 void MotorMovement::Speed() {
-  if (LOG) {
-    Serial.write("Speed\n");
-  }
+  
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+  
   m1->setSpeed(this->m_iSpeed);
   m2->setSpeed(this->m_iSpeed);
   m3->setSpeed(this->m_iSpeed);
@@ -37,13 +42,17 @@ void MotorMovement::Speed() {
   delay(5);
 }
 void MotorMovement::moveForward() {
-  if (LOG) {
-    Serial.write("moveForward\n");
-  }
+  
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+
   if (!this->goesForward) {
-    if (LOG) {
-      Serial.write("moveForward 1\n");
-    }
+
+    #ifdef LOG_MotorMovement
+      Serial.write("moveForward inside condition \n");
+    #endif
+    
     goesForward = true;
     m1->run(FORWARD);
     m2->run(FORWARD);
@@ -53,9 +62,11 @@ void MotorMovement::moveForward() {
 }
 
 void MotorMovement::moveBackward() {
-  if (LOG) {
-    Serial.write("moveBackward\n");
-  }
+  
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+
   goesForward = false;
   m1->run(BACKWARD);
   m2->run(BACKWARD);
@@ -64,9 +75,11 @@ void MotorMovement::moveBackward() {
 }
 
 void MotorMovement::turnRight() {
-  if (LOG) {
-    Serial.write("turnRight\n");
-  }
+
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+
   m1->run(FORWARD);
   m2->run(FORWARD);
   m3->run(BACKWARD);
@@ -79,9 +92,11 @@ void MotorMovement::turnRight() {
 }
 
 void MotorMovement::turnLeft() {
-  if (LOG) {
-    Serial.write("turnLeft\n");
-  }
+  
+  #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+  #endif
+
   m1->run(BACKWARD);
   m2->run(BACKWARD);
   m3->run(FORWARD);

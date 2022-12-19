@@ -13,7 +13,8 @@
 #define FORWARD_IR_REMOTE_CODE
 #define FORWARD_CODE
 
-#define LOG false
+#define LOG true
+#define LOG_MotorMovement
 
 
 #endif
