@@ -1,0 +1,24 @@
+#ifndef PnDetails_h
+#define PnDetails_h
+
+#define ULTRASONIC_ECHO_PIN A0
+#define ULTRASONIC_TRIG_PIN A1
+
+#define IR_SENSOR_LEFT A2
+
+#define LEFT_LINE_FOLLOW_IR A3
+#define SOUND_PIN A4
+#define RIGHT_LINE_FOLLOW_IR A5
+
+#define BLUETOOTH_TX 0
+#define BLUETOOTH_RX 1
+
+#define SERVO_PIN_FREE 9
+#define SERVO_PIN_IN_USE 10
+
+#define DCMOTER_LEFT_FRONT 1
+#define DCMOTER_LEFT_BCAK 2
+#define DCMOTER_RIGHT_FRONT 3
+#define DCMOTER_RIGHT_BACK 4
+
+#endif

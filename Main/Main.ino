@@ -1,51 +1,20 @@
+#include <Arduino.h> 
+
 #include <SoftwareSerial.h>
 #include <IRremote.h>
-#include <AFMotor.h>
+
 #include <Servo.h>
 #include <NewPing.h>
-#include "motormovement.h"
 
-#define ULTRASONIC_ECHO_PIN A0
-#define ULTRASONIC_TRIG_PIN A1
+#include "CommonInclude.h"
+#include "MotorMovement.h"
 
-#define IR_SENSOR_LEFT A2
 
-#define LEFT_LINE_FOLLOW_IR A3
-#define SOUND_PIN A4
-#define RIGHT_LINE_FOLLOW_IR A5
-
-#define BLUETOOTH_TX 0
-#define BLUETOOTH_RX 1
-
-#define SERVO_PIN_FREE 9
-#define SERVO_PIN_IN_USE 10
-
-#define DCMOTER_LEFT_FRONT 1
-#define DCMOTER_LEFT_BCAK 2
-#define DCMOTER_RIGHT_FRONT 3
-#define DCMOTER_RIGHT_BACK 4
-
-#define REVERCE_DISTANCE 30
-#define MAX_DISTANCE 200
-#define MAX_SPEED 150  // sets speed of DC  motors
-#define MAX_SPEED_INCREMENT 20
-
-#define SERIAL_PORT 9600
-#define BLUETOOTH_PORT 9600
-
-#define FORWARD_BT_CHAR 'F'
-#define FORWARD_IR_REMOTE_CODE
-#define FORWARD_CODE
-
-#define LOG false
 
 SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);  // RX, TX
 NewPing sonar(ULTRASONIC_TRIG_PIN, ULTRASONIC_ECHO_PIN, MAX_DISTANCE);
 
-AF_DCMotor m1(DCMOTER_LEFT_FRONT, MOTOR12_64KHZ);
-AF_DCMotor m2(DCMOTER_LEFT_BCAK, MOTOR12_64KHZ);
-AF_DCMotor m3(DCMOTER_RIGHT_FRONT, MOTOR34_64KHZ);
-AF_DCMotor m4(DCMOTER_RIGHT_BACK, MOTOR34_64KHZ);
+MotorMovement motorMovement = MotorMovement();
 
 Servo myservo;
 
@@ -56,9 +25,9 @@ int flag = 0;
 char command;
 int rightIRSensorValue;
 int leftIRSensorValue;
-boolean goesForward = false;
+
 int distance = 100;
-int speedSet = 0;
+
 bool isAutomatic = false;
 
 
@@ -104,19 +73,19 @@ void loop() {
     switch (command) {
       case 'F':
         isAutomatic = false;
-        moveForward();
+        motorMovement.moveForward();
         break;
       case 'B':
         isAutomatic = false;
-        moveBackward();
+        motorMovement.moveBackward();
         break;
       case 'L':
         isAutomatic = false;
-        turnLeft();
+        motorMovement.turnLeft();
         break;
       case 'R':
         isAutomatic = false;
-        turnRight();
+        motorMovement.turnRight();
         break;
       case 'X':
         isAutomatic = true;
@@ -125,10 +94,10 @@ void loop() {
         isAutomatic = false;
         break;
       case '0':
-        speedSet = 0;
+        motorMovement.setSpeed(0);
         break;
-      case '1':
-        speedSet = 20;
+     /* case '1':
+        //speedSet = 20;
         Speed();
         break;
       case '2':
@@ -169,19 +138,19 @@ void loop() {
         break;
       case 'D':
         moveStop();
-        break;
+        break;*/
     }
   } else if (rightIRSensorValue == LOW && leftIRSensorValue == LOW) {
     //if(LOG){ Serial.write("Skipped\n"); }
     automatic();
   } else if (rightIRSensorValue == HIGH && leftIRSensorValue == LOW) {
-    turnRight();
+    motorMovement.turnRight();
   }
 
   else if (rightIRSensorValue == LOW && leftIRSensorValue == HIGH) {
-    turnLeft();
+    motorMovement.turnLeft();
   } else {
-    moveForward();
+    motorMovement.moveForward();
   }
 
   rightIRSensorValue = digitalRead(RIGHT_LINE_FOLLOW_IR);
@@ -198,11 +167,11 @@ void automatic() {
   delay(1000);
 
   if (distance <= REVERCE_DISTANCE) {
-    moveStop();
+    motorMovement.Stop();
     delay(100);
-    moveBackward();
+    motorMovement.moveBackward();
     delay(200);
-    moveStop();
+    motorMovement.Stop();
     delay(200);
     distanceR = lookRight();
     delay(200);
@@ -210,14 +179,14 @@ void automatic() {
     delay(200);
 
     if (distanceR >= distanceL) {
-      turnRight();
-      moveStop();
+      motorMovement.turnRight();
+      motorMovement.Stop();
     } else {
-      turnLeft();
-      moveStop();
+      motorMovement.turnLeft();
+      motorMovement.Stop();
     }
   } else {
-    moveForward();
+    motorMovement.moveForward();
   }
 }
 
@@ -258,81 +227,4 @@ int readPing() {
     cm = 250;
   }
   return cm;
-}
-
-void moveStop() {
-  if (LOG) {
-    Serial.write("moveStop\n");
-  }
-  m1.run(RELEASE);
-  m2.run(RELEASE);
-  m3.run(RELEASE);
-  m4.run(RELEASE);
-}
-
-int Speed() {
-  if (LOG) {
-    Serial.write("Speed\n");
-  }
-  m1.setSpeed(speedSet);
-  m2.setSpeed(speedSet);
-  m3.setSpeed(speedSet);
-  m4.setSpeed(speedSet);
-  delay(5);
-}
-void moveForward() {
-  if (LOG) {
-    Serial.write("moveForward\n");
-  }
-  if (!goesForward) {
-    if (LOG) {
-      Serial.write("moveForward 1\n");
-    }
-    goesForward = true;
-    m1.run(FORWARD);
-    m2.run(FORWARD);
-    m3.run(FORWARD);
-    m4.run(FORWARD);
-  }
-}
-
-void moveBackward() {
-  if (LOG) {
-    Serial.write("moveBackward\n");
-  }
-  goesForward = false;
-  m1.run(BACKWARD);
-  m2.run(BACKWARD);
-  m3.run(BACKWARD);
-  m4.run(BACKWARD);
-}
-
-void turnRight() {
-  if (LOG) {
-    Serial.write("turnRight\n");
-  }
-  m1.run(FORWARD);
-  m2.run(FORWARD);
-  m3.run(BACKWARD);
-  m4.run(BACKWARD);
-  delay(500);
-  m1.run(FORWARD);
-  m2.run(FORWARD);
-  m3.run(FORWARD);
-  m4.run(FORWARD);
-}
-
-void turnLeft() {
-  if (LOG) {
-    Serial.write("turnLeft\n");
-  }
-  m1.run(BACKWARD);
-  m2.run(BACKWARD);
-  m3.run(FORWARD);
-  m4.run(FORWARD);
-  delay(500);
-  m1.run(FORWARD);
-  m2.run(FORWARD);
-  m3.run(FORWARD);
-  m4.run(FORWARD);
 }
