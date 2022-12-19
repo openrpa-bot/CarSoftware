@@ -3,14 +3,21 @@
 
 
 MotorMovement::MotorMovement() {
+    #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+    #endif
+    
     this->m1 = new AF_DCMotor(DCMOTER_LEFT_FRONT, MOTOR12_64KHZ);
     this->m2 = new AF_DCMotor(DCMOTER_LEFT_BCAK, MOTOR12_64KHZ);
     this->m3 = new AF_DCMotor(DCMOTER_RIGHT_FRONT, MOTOR34_64KHZ);
     this->m4 = new AF_DCMotor(DCMOTER_RIGHT_BACK, MOTOR34_64KHZ);
-
 }
 
 MotorMovement::MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement) {
+    #ifdef LOG_MotorMovement
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+    #endif
+    
     this->m_iSpeed = iSpeed;
     this->m_iMaxSpeed = iMaxSpeed;
     this->m_iSpeedIncrement = iSpeedIncrement    ;
