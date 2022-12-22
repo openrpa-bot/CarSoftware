@@ -4,17 +4,16 @@
 #include <IRremote.h>
 
 #include <Servo.h>
-#include <NewPing.h>
 
 #include "CommonInclude.h"
 #include "MotorMovement.h"
-
+#include "UltrasonicOperations.h"
 
 
 SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);  // RX, TX
-NewPing sonar(ULTRASONIC_TRIG_PIN, ULTRASONIC_ECHO_PIN, MAX_DISTANCE);
 
 MotorMovement motorMovement = MotorMovement();
+UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
 
 Servo myservo;
 
@@ -26,7 +25,7 @@ char command;
 int rightIRSensorValue;
 int leftIRSensorValue;
 
-int distance = 100;
+
 
 bool isAutomatic = false;
 
@@ -38,15 +37,7 @@ void setup() {
   myservo.write(90);
   //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
 
-  delay(2000);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
-  distance = readPing();
-  delay(100);
+ ultrasonicOperations.setup();
 
   pinMode(RIGHT_LINE_FOLLOW_IR, INPUT);
   pinMode(LEFT_LINE_FOLLOW_IR, INPUT);
@@ -158,7 +149,8 @@ void loop() {
 }
 void automatic() {
   if (!isAutomatic) return;
-  distance = readPing();
+  int distance = ultrasonicOperations.UltrasonicRead();
+  
   if (LOG) {
     Serial.print("automatic distance\n");
   }
@@ -173,9 +165,9 @@ void automatic() {
     delay(200);
     motorMovement.Stop();
     delay(200);
-    distanceR = lookRight();
+    distanceR = ultrasonicOperations.lookRight();
     delay(200);
-    distanceL = lookLeft();
+    distanceL = ultrasonicOperations.lookLeft();
     delay(200);
 
     if (distanceR >= distanceL) {
@@ -190,41 +182,4 @@ void automatic() {
   }
 }
 
-int lookRight() {
-  if (LOG) {
-    Serial.write("lookRight\n");
-  }
-  myservo.write(50);
-  delay(500);
-  int distance = readPing();
-  delay(100);
-  myservo.write(90);
-  return distance;
-}
 
-int lookLeft() {
-  if (LOG) {
-    Serial.write("lookLeft\n");
-  }
-  myservo.write(130);
-  delay(500);
-  int distance = readPing();
-  delay(100);
-  myservo.write(90);
-  return distance;
-  delay(100);
-}
-
-int readPing() {
-  delay(100);
-  int cm = sonar.ping_cm();
-  if (LOG) {
-    Serial.print("readPing Distance");
-    Serial.print(cm);
-    Serial.print("\n");
-  }
-  if (cm == 0) {
-    cm = 250;
-  }
-  return cm;
-}
