@@ -3,19 +3,19 @@
 #include <SoftwareSerial.h>
 #include <IRremote.h>
 
-#include <Servo.h>
+
 
 #include "CommonInclude.h"
 #include "MotorMovement.h"
 #include "UltrasonicOperations.h"
+#include "ServoOperations.h"
 
 
 SoftwareSerial Bluetooth(BLUETOOTH_RX, BLUETOOTH_TX);  // RX, TX
 
 MotorMovement motorMovement = MotorMovement();
 UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
-
-Servo myservo;
+ServoOperations servoOperations = ServoOperations();
 
 
 int state = 0;
@@ -33,8 +33,8 @@ bool isAutomatic = false;
 void setup() {
   Serial.begin(SERIAL_PORT);
   Bluetooth.begin(BLUETOOTH_PORT);
-  myservo.attach(SERVO_PIN_IN_USE);
-  myservo.write(90);
+ servoOperations.setup();
+  
   //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
 
  ultrasonicOperations.setup();
