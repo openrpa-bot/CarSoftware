@@ -1,12 +1,12 @@
-#ifndef BluetoothOperation_h
-#define BluetoothOperation_h
+#ifndef BluetoothOperations_h
+#define BluetoothOperations_h
 #include <Arduino.h> 
 #include <SoftwareSerial.h>
 #include "CommonInclude.h"
 
-class BluetoothOperation {
+class BluetoothOperations {
 public:
-BluetoothOperation();
+BluetoothOperations();
 int BluetoothTrueRoFalse( );
 void setup();
 

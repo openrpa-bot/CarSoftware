@@ -7,35 +7,35 @@
 #include "MotorMovement.h"
 #include "UltrasonicOperations.h"
 #include "ServoOperations.h"
-#include "BluetoothOperation.h"
+#include "BluetoothOperations.h"
 
 
 MotorMovement motorMovement = MotorMovement();
 UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
 ServoOperations servoOperations = ServoOperations();
-BluetoothOperation bluetoothOperation = BluetoothOperation();
+BluetoothOperations bluetoothOperations = BluetoothOperations();
+//LightOperations lightOperations = BluetoothOperations();
+//IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
+//IRLineSensor leftIRLineSensor= IRLineSensor();
+//IRLineSensor rightIRLineSensor= IRLineSensor();
+//LineFolower LineFolower = LineFolower();
+//AutomaticObstacleSensorMove AutomaticObstacleSensorMove = AutomaticObstacleSensorMove();
 
 int state = 0;
 int flag = 0;
 
-
 int rightIRSensorValue;
 int leftIRSensorValue;
-
-
-
 bool isAutomatic = false;
-
 
 void setup() {
  Serial.begin(SERIAL_PORT);
  
  servoOperations.setup();
- bluetoothOperation.setup();
-
-  //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
-
+ bluetoothOperations.setup();
  ultrasonicOperations.setup();
+
+  //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); 
 
   pinMode(RIGHT_LINE_FOLLOW_IR, INPUT);
   pinMode(LEFT_LINE_FOLLOW_IR, INPUT);

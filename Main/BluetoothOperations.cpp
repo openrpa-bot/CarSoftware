@@ -1,12 +1,12 @@
-#include "BluetoothOperation.h"
+#include "BluetoothOperations.h"
 
-BluetoothOperation::BluetoothOperation(){
+BluetoothOperations::BluetoothOperations(){
     m_Bluetooth= new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);  // RX, TX
 };
-void BluetoothOperation::setup(){
+void BluetoothOperations::setup(){
   m_Bluetooth->begin(BLUETOOTH_PORT);
 }
-int BluetoothOperation::BluetoothTrueRoFalse( ){
+int BluetoothOperations::BluetoothTrueRoFalse( ){
   char command;
   if (m_Bluetooth->available() > 0){
     command = m_Bluetooth->read();
