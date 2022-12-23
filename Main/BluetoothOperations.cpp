@@ -3,12 +3,12 @@
 BluetoothOperations::BluetoothOperations()
 {
   LOG_BluetoothOperations("BluetoothOperations::BluetoothOperations()");
-  m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX); // RX, TX
+  m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
 }
 
 void BluetoothOperations::setup()
-{
-  LOG_BluetoothOperations("BluetoothOperations::setup()");
+{  
+  LOG_BluetoothOperations("BluetoothOperations::setup()");  
   m_Bluetooth->begin(BLUETOOTH_PORT);
 }
 
@@ -17,30 +17,35 @@ void BluetoothOperations::loop()
   LOG_BluetoothOperations_LOOP("BluetoothOperations::loop()");
 }
 
-int BluetoothOperations::BluetoothTrueRoFalse()
+int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operationRequest)
 {
-  LOG_BluetoothOperations("BluetoothOperations::BluetoothTrueRoFalse()");
-  OperationType operationType = OperationType::None;
+  LOG_BluetoothOperations("BluetoothOperations::CheckBluetoothOperationRequest()");
+
+  operationRequest->operationType = OperationType::None;
+
   if (m_Bluetooth->available() > 0)
   {
     int command = m_Bluetooth->read();
+    
+    Serial.print(command); Serial.print(": Received the BlueTooth Command\n");
+
     switch (command)
     {
     case 'F':
-      operationType = OperationType::MoveForward;
+      operationRequest->operationType = OperationType::MoveForward;
       break;
     case 'B':
-      operationType = OperationType::MoveBackword;
+      operationRequest->operationType = OperationType::MoveBackword;
       break;
     case 'L':
-      operationType = OperationType::LeftTurn;
+      operationRequest->operationType = OperationType::LeftTurn;
       break;
     case 'R':
-      operationType = OperationType::RightTurn;
+      operationRequest->operationType = OperationType::RightTurn;
       break;
 
     case 'D':
-      operationType = OperationType::StopMoveing;
+      operationRequest->operationType = OperationType::StopMoveing;
       break;
 
     case '0':
@@ -53,39 +58,41 @@ int BluetoothOperations::BluetoothTrueRoFalse()
     case '7':
     case '8':
     case '9':
-    case 'q':
-      operationType = OperationType::Speed;
+      operationRequest->operationRequestData.Speed = command - '0';
+      operationRequest->operationType = OperationType::Speed;
       break;
-
+    case 'q':
+      operationRequest->operationRequestData.Speed = 10;
+      operationRequest->operationType = OperationType::Speed;
+      break;
     case 'X':
-      operationType = OperationType::CruseControlMode;
+      operationRequest->operationType = OperationType::CruseControlMode;
       break;
     case 'x':
-      operationType = OperationType::LineFollowerMode;
+      operationRequest->operationType = OperationType::LineFollowerMode;
       break;
     case 'W':
-      operationType = OperationType::HendLightOn;
+      operationRequest->operationType = OperationType::HendLightOn;
       break;
     case 'w':
-      operationType = OperationType::HendLightOff;
+      operationRequest->operationType = OperationType::HendLightOff;
       break;
     case 'U':
-      operationType = OperationType::BackLightOn;
+      operationRequest->operationType = OperationType::BackLightOn;
       break;
     case 'u':
-      operationType = OperationType::BackLightOff;
+      operationRequest->operationType = OperationType::BackLightOff;
       break;
-
     case 'V':
-      operationType = OperationType::DeeperOn;
+      operationRequest->operationType = OperationType::DeeperOn;
       break;
     case 'v':
-      operationType = OperationType::DeeperOff;
+      operationRequest->operationType = OperationType::DeeperOff;
       break;
-
     default:
-      operationType = OperationType::Undefined;
+      operationRequest->operationType = OperationType::Undefined;
       break;
-    }
+    }  
   }
+  return operationRequest->operationType;
 }

@@ -8,9 +8,9 @@ class BluetoothOperations
 {
 public:
     BluetoothOperations();
-    int BluetoothTrueRoFalse();
     void setup();
     void loop();
+    int CheckBluetoothOperationRequest(OperationRequest* operationRequest);
 
 private:
     SoftwareSerial *m_Bluetooth = NULL;

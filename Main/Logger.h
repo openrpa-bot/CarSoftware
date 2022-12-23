@@ -2,6 +2,7 @@
 #define Logger_h
 
 //#define LOG_LOOP
+#define LOG_Enable
 /*
 #define LOG_Enable 
 #define LOG_Main_Enable 
@@ -17,10 +18,10 @@
 #define LOG_UltrasonicOperations_Enable
 */
 
-#define LOG_Format(message) Serial.write(__FILE__); Serial.write(":"); Serial.print(__LINE__); Serial.write(":"); Serial.write(__FUNCTION__); Serial.write(":");  Serial.write(message); Serial.write("\n");
+#define LOG_Format(message) Serial.write(__FILE__); Serial.write(":"); Serial.print(__LINE__); Serial.write(":"); Serial.write(__FUNCTION__); Serial.write(":");  Serial.print(message); Serial.write("\n");
 
 #ifdef LOG_LOOP
-    #define LOG_Format_LOOP(message) Serial.write(__FILE__); Serial.write(":"); Serial.print(__LINE__); Serial.write(":"); Serial.write(__FUNCTION__); Serial.write(":");  Serial.write(message); Serial.write("\n");
+    #define LOG_Format_LOOP(message) Serial.write(__FILE__); Serial.write(":"); Serial.print(__LINE__); Serial.write(":"); Serial.write(__FUNCTION__); Serial.write(":");  Serial.print(message); Serial.write("\n");
 #else
     #define LOG_Format_LOOP(message)
 #endif
