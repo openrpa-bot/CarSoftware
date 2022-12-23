@@ -23,7 +23,7 @@ LedOperations ledOperations = LedOperations();
 IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
 LeftIRLineSensor leftIRLineSensor= LeftIRLineSensor();
 RightIRLineSensor rightIRLineSensor= RightIRLineSensor();
-LineFollower LineFolower = LineFollower();
+LineFollower lineFollower = LineFollower();
 AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSensorMove();
 
 int state = 0;
