@@ -9,7 +9,8 @@
 #include "BluetoothOperations.h"
 #include "LedOperations.h"
 #include "IRRemoteReceiver.h"
-#include "IRLineSensor.h"
+#include "LeftIRLineSensor.h"
+#include "RightIRLineSensor.h"
 #include "LineFollower.h"
 #include "AutomaticObstacleSensorMove.h"
 
@@ -20,8 +21,8 @@ ServoOperations servoOperations = ServoOperations();
 BluetoothOperations bluetoothOperations = BluetoothOperations();
 LedOperations ledOperations = LedOperations();
 IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
-IRLineSensor leftIRLineSensor= IRLineSensor();
-IRLineSensor rightIRLineSensor= IRLineSensor();
+LeftIRLineSensor leftIRLineSensor= LeftIRLineSensor();
+RightIRLineSensor rightIRLineSensor= RightIRLineSensor();
 LineFollower LineFolower = LineFollower();
 AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSensorMove();
 

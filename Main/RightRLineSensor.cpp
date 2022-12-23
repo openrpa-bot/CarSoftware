@@ -1,15 +1,15 @@
 #include <Arduino.h>
-#include "IRLineSensor.h"
+#include "RightIRLineSensor.h"
 
-void IRLineSensor::setup() {
-    #ifdef LOG_IRLineSensor
+void RightIRLineSensor::setup() {
+    #ifdef LOG_LeftIRLineSensor
     Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
     #endif
 
 }    
 
-IRLineSensor::IRLineSensor() {
-    #ifdef LOG_IRLineSensor
+RightIRLineSensor::RightIRLineSensor() {
+    #ifdef LOG_LeftIRLineSensor
     Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
     #endif
 }
