@@ -2,24 +2,17 @@
 #include "AutomaticObstacleSensorMove.h"
 
 void AutomaticObstacleSensorMove::setup() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
-
+   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::setup()");
 }    
 
 AutomaticObstacleSensorMove::AutomaticObstacleSensorMove() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
+    LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::AutomaticObstacleSensorMove()");
 }
 void AutomaticObstacleSensorMove::loop() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
-
+    LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::loop()");
 }    
 void AutomaticObstacleSensorMove::automatic() {
+  LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::automatic()");
  /* if (!isAutomatic) return;
   int distance = ultrasonicOperations.UltrasonicRead();
   
