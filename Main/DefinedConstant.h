@@ -5,6 +5,7 @@
 #define MAX_DISTANCE 200
 #define MAX_SPEED 150  // sets speed of DC  motors
 #define MAX_SPEED_INCREMENT 20
+#define INITIAL_SPEED 20
 
 #define SERIAL_PORT 9600
 #define BLUETOOTH_PORT 9600

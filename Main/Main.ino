@@ -26,6 +26,8 @@ RightIRLineSensor rightIRLineSensor= RightIRLineSensor();
 LineFollower lineFollower = LineFollower();
 AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSensorMove();
 
+OperationRequest *operationRequest = new OperationRequest();
+
 int state = 0;
 int flag = 0;
 
@@ -51,7 +53,7 @@ void setup() {
 void loop() {
   
   
-  motorMovement.loop();
+ motorMovement.loop();
  ultrasonicOperations.loop();
  servoOperations.loop();
  bluetoothOperations.loop();
