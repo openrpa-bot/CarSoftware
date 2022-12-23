@@ -29,9 +29,6 @@ OperationRequest *operationRequest = new OperationRequest();
 
 void setup()
 {
-
-  Serial.begin(SERIAL_PORT);
-
   LOG_Main("BEGIN");
 
   automaticObstacleSensorMove.setup();

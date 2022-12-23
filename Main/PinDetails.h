@@ -28,9 +28,9 @@ In the case of using Stepper motor, pins 11 and 3 for #1, pins 5 and 6 for #2 an
 
 You can use free pins by wired connections.
 */
-//Pins 4, 7, 8, and 12 may also all be used
+// Pins 4, 7, 8, and 12 may also all be used
 #define RELAY_MODULE_PIN_3_LEFT_INDECATOR SERVO_PIN_FREE
-//#define RELAY_MODULE_PIN_4_RIGHT_INDECATOR 13
+// #define RELAY_MODULE_PIN_4_RIGHT_INDECATOR 13
 
 #define DCMOTER_LEFT_FRONT 1
 #define DCMOTER_LEFT_BCAK 2

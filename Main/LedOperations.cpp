@@ -1,26 +1,17 @@
-#include <Arduino.h> 
+#include <Arduino.h>
 #include "LedOperations.h"
 
-LedOperations::LedOperations() {
-    #ifdef LOG_MotorMovement
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
-    
+LedOperations::LedOperations()
+{
+    LOG_LedOperations("LedOperations::LedOperations()");
 }
 
-void LedOperations::setup() {
-    #ifdef LOG_LedOperations
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
+void LedOperations::setup()
+{
+    LOG_LedOperations("LedOperations::setup()");
+}
 
-}    
-void LedOperations::loop() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
-
-}    
-
-
-
-
+void LedOperations::loop()
+{
+    LOG_LedOperations_LOOP("LedOperations::loop()");
+}

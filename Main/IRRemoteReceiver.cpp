@@ -1,23 +1,20 @@
-#include <Arduino.h> 
+#include <Arduino.h>
 #include <IRremote.h>
 
 #include "IRRemoteReceiver.h"
 
-void IRRemoteReceiver::setup() {
-    #ifdef LOG_IRRemoteReceiver
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
-//IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); 
-}    
-
-IRRemoteReceiver::IRRemoteReceiver() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
+IRRemoteReceiver::IRRemoteReceiver()
+{
+    LOG_IRRemoteReceiver("IRRemoteReceiver::IRRemoteReceiver()");
 }
-void IRRemoteReceiver::loop() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
 
-}    
+void IRRemoteReceiver::setup()
+{
+    LOG_IRRemoteReceiver("IRRemoteReceiver::setup()");
+    // IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK);
+}
+
+void IRRemoteReceiver::loop()
+{
+    LOG_IRRemoteReceiver_LOOP("IRRemoteReceiver::loop()");
+}

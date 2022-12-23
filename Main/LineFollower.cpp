@@ -1,44 +1,39 @@
-#include <Arduino.h> 
+#include <Arduino.h>
 #include "LineFollower.h"
 
-void LineFollower::setup() {
-    #ifdef LOG_LedOperations
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
+LineFollower::LineFollower()
+{
+  LOG_LineFollower("LineFollower::LineFollower()");
+}
 
-}    
+void LineFollower::setup()
+{
+  LOG_LineFollower("LineFollower::setup()");
+}
 
-LineFollower::LineFollower() {
+void LineFollower::loop()
+{
+  LOG_LineFollower_LOOP("LineFollower::loop()");
+  /*
+  int state = 0;
+ int flag = 0;
 
-    #ifdef LOG_LedOperations
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
+ int rightIRSensorValue;
+ int leftIRSensorValue;
+ bool isAutomatic = false;
 
-}    
-void LineFollower::loop() {
-    #ifdef LOG_IRLineSensor
-    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
-    #endif
- /*
- int state = 0;
-int flag = 0;
+  if (IrReceiver.decode())
+   {
+     //int signalReceived = IrReceiver.decodedIRData;
+     Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
+     IrReceiver.printIRResultShort(&Serial);
+     //Serial.print("Code: "); Serial.print(signalReceived, HEX); Serial.println(",\n");
+     IrReceiver.resume();
+   }
+   return;*/
+  // if(Serial.available() > 0){
+  // command = Serial.read();
 
-int rightIRSensorValue;
-int leftIRSensorValue;
-bool isAutomatic = false;
-
- if (IrReceiver.decode())
-  {
-    //int signalReceived = IrReceiver.decodedIRData;
-    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
-    IrReceiver.printIRResultShort(&Serial);
-    //Serial.print("Code: "); Serial.print(signalReceived, HEX); Serial.println(",\n");
-    IrReceiver.resume();
-  }
-  return;*/
-  //if(Serial.available() > 0){
-  //command = Serial.read();
-  
   /*if (rightIRSensorValue == LOW && leftIRSensorValue == LOW) {
     //if(LOG){ Serial.write("Skipped\n"); }
     //automatic();
@@ -55,4 +50,4 @@ bool isAutomatic = false;
   rightIRSensorValue = digitalRead(RIGHT_LINE_FOLLOW_IR);
   leftIRSensorValue = digitalRead(IR_SENSOR_LEFT);
   }*/
-}    
+}

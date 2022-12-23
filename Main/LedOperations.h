@@ -1,14 +1,14 @@
 #ifndef LedOperations_h
 #define LedOperations_h
-#include <Arduino.h> 
+#include <Arduino.h>
 #include "CommonInclude.h"
 
-class LedOperations {
+class LedOperations
+{
 public:
-LedOperations();
-void setup();
-void loop();
+    LedOperations();
+    void setup();
+    void loop();
 private:
-
 };
 #endif

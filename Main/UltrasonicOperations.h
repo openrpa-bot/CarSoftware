@@ -1,22 +1,22 @@
 #ifndef UltrasonicOperations_h
 #define UltrasonicOperations_h
-#include <Arduino.h> 
+#include <Arduino.h>
 #include "CommonInclude.h"
 #include <NewPing.h>
 
-class UltrasonicOperations {
+class UltrasonicOperations
+{
 public:
    UltrasonicOperations();
-   
+
    void setup();
    int lookRight();
    int lookLeft();
    int UltrasonicRead();
-	void loop();
+   void loop();
+
 private:
-
-
-NewPing *m_NewPing = NULL;
-int m_Distance;
+   NewPing *m_NewPing = NULL;
+   int m_Distance;
 };
 #endif

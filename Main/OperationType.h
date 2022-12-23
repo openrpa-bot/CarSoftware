@@ -1,7 +1,6 @@
 #ifndef OperationType_h
 #define OperationType_h
 
-
 enum OperationType
 {
   None,
@@ -27,7 +26,8 @@ enum OperationType
   DeeperOff
 };
 
-union OperationRequestData{
+union OperationRequestData
+{
   int Speed;
 };
 

@@ -2,33 +2,35 @@
 #define MotorMovement_h
 
 #include "CommonInclude.h"
-#include <Arduino.h> 
+#include <Arduino.h>
 #include <AFMotor.h>
 
-
-class MotorMovement {
+class MotorMovement
+{
 public:
-	MotorMovement();
-	MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement);
-	void myFunction(int blinkRate);
-
+    MotorMovement();
+    MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement);
     void setup();
+    void loop();
 
+    void myFunction(int blinkRate);
     void Stop();
     void Speed();
     void moveForward();
     void moveBackward();
     void turnRight();
     void turnLeft();
-    void loop();
-    void setSpeed(int iSpeed){
+
+    void setSpeed(int iSpeed)
+    {
         this->m_iSpeed = iSpeed;
     }
-    int getSpeed(){
+    int getSpeed()
+    {
         return m_iSpeed;
     }
-private:
 
+private:
     AF_DCMotor *m1 = NULL;
     AF_DCMotor *m2 = NULL;
     AF_DCMotor *m3 = NULL;
@@ -40,6 +42,4 @@ private:
 
     boolean goesForward = false;
 };
-
-
 #endif

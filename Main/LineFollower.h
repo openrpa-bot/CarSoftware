@@ -1,15 +1,14 @@
 #ifndef LineFollower_h
 #define LineFollower_h
-#include <Arduino.h> 
+#include <Arduino.h>
 #include "CommonInclude.h"
 
-
-class LineFollower {
+class LineFollower
+{
 public:
    LineFollower();
    void setup();
    void loop();
 private:
-
 };
 #endif
