@@ -46,12 +46,6 @@ void setup() {
  leftIRLineSensor.setup();
  rightIRLineSensor.setup();
  automaticObstacleSensorMove.setup();
-
-
-  //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); 
-
-  pinMode(RIGHT_LINE_FOLLOW_IR, INPUT);
-  pinMode(LEFT_LINE_FOLLOW_IR, INPUT);
 }
 
 void loop() {
