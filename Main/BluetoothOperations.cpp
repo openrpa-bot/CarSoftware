@@ -1,8 +1,25 @@
 #include "BluetoothOperations.h"
 enum OperationType {
   None,
+  Undefined,
+
   MoveForward,
-  MoveBackword
+  MoveBackword,
+  LeftTurn,
+  RightTurn,
+  StopMoveing,
+
+  Speed,
+ 
+  CruseControl,
+  LineFollower,
+
+  HendLightOn,
+  HendLightOff,
+  BackLightOn,
+  BackLightOff,
+  DeeperOn,
+  DeeperOff
 };
 
 BluetoothOperations::BluetoothOperations(){
@@ -27,48 +44,47 @@ int BluetoothOperations::BluetoothTrueRoFalse( ){
         operationType = OperationType::MoveBackword;
         break;
       case 'L':
+       operationType = OperationType::LeftTurn;
         break;
       case 'R':
+       operationType = OperationType::RightTurn;
         break;
       case 'X':
+       operationType = OperationType::crusecontrol;
         break;
       case 'x':
-        break;
-      case '0':
-        break;
-      case '1':
-        break;
-      case '2':
-        break;
-      case '3':
-        break;
-      case '4':
-        
-        break;
-      case '5':
-        
-        break;
-      case '6':
-        
-        break;
-      case '7':
-        
-        
-        break;
-      case '8':
-        
-        
-        break;
-      case '9':
-        
-        
-        break;
-      case 'q':
-        
-        
+       operationType = OperationType::LineFollower;
         break;
       case 'D':
-        
+         operationType = OperationType::StopMoveing;
+        break;
+      case '0':
+      case '1':
+      case '2':
+      case '3':
+      case '4':
+      case '5':
+      case '6':
+      case '7':
+      case '8':
+      case '9':      
+      case 'q':       
+        operationType = OperationType::Speed;
+        break;
+      case 'W':
+         operationType = OperationType::HendLightOn;
+        break;
+      case 'w':
+         operationType = OperationType::HendLightOff;
+        break;
+      case 'U':
+         operationType = OperationType::BackLightOn;
+        break;
+      case 'u':
+         operationType = OperationType::BackLightOff;
+        break;
+      default:
+        operationType = OperationType::Undefined;
         break;
     }
 }
