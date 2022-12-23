@@ -1,3 +1,4 @@
+#include <Arduino.h> 
 #include "BluetoothOperations.h"
 
 BluetoothOperations::BluetoothOperations(){

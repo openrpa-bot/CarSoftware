@@ -1,6 +1,12 @@
 #include <Arduino.h>
 #include "MotorMovement.h"
 
+void MotorMovement::setup() {
+    #ifdef LOG_LedOperations
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+    #endif
+
+}    
 
 MotorMovement::MotorMovement() {
     #ifdef LOG_MotorMovement

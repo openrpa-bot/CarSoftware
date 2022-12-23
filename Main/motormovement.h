@@ -12,6 +12,8 @@ public:
 	MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement);
 	void myFunction(int blinkRate);
 
+    void setup();
+
     void Stop();
     void Speed();
     void moveForward();

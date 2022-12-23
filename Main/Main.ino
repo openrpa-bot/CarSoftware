@@ -1,6 +1,5 @@
 #include <Arduino.h> 
 
-
 #include <IRremote.h>
 
 #include "CommonInclude.h"
@@ -8,18 +7,23 @@
 #include "UltrasonicOperations.h"
 #include "ServoOperations.h"
 #include "BluetoothOperations.h"
+#include "LedOperations.h"
+#include "IRRemoteReceiver.h"
+#include "IRLineSensor.h"
+#include "LineFollower.h"
+#include "AutomaticObstacleSensorMove.h"
 
 
 MotorMovement motorMovement = MotorMovement();
 UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
 ServoOperations servoOperations = ServoOperations();
 BluetoothOperations bluetoothOperations = BluetoothOperations();
-//LightOperations lightOperations = BluetoothOperations();
-//IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
-//IRLineSensor leftIRLineSensor= IRLineSensor();
-//IRLineSensor rightIRLineSensor= IRLineSensor();
-//LineFolower LineFolower = LineFolower();
-//AutomaticObstacleSensorMove AutomaticObstacleSensorMove = AutomaticObstacleSensorMove();
+LedOperations ledOperations = LedOperations();
+IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
+IRLineSensor leftIRLineSensor= IRLineSensor();
+IRLineSensor rightIRLineSensor= IRLineSensor();
+LineFollower LineFolower = LineFollower();
+AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSensorMove();
 
 int state = 0;
 int flag = 0;
@@ -31,9 +35,17 @@ bool isAutomatic = false;
 void setup() {
  Serial.begin(SERIAL_PORT);
  
+ motorMovement.setup();
+ ultrasonicOperations.setup();
  servoOperations.setup();
  bluetoothOperations.setup();
- ultrasonicOperations.setup();
+ ledOperations.setup();
+ iRRemoteReceiver.setup();
+ leftIRLineSensor.setup();
+ leftIRLineSensor.setup();
+ rightIRLineSensor.setup();
+ automaticObstacleSensorMove.setup();
+
 
   //IrReceiver.begin(IR_RECEIVE_PIN, ENABLE_LED_FEEDBACK); 
 
