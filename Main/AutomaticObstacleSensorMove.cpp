@@ -9,7 +9,7 @@ AutomaticObstacleSensorMove::AutomaticObstacleSensorMove() {
     LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::AutomaticObstacleSensorMove()");
 }
 void AutomaticObstacleSensorMove::loop() {
-    LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::loop()");
+    LOG_AutomaticObstacleSensorMove_LOOP("AutomaticObstacleSensorMove::loop()");
 }    
 void AutomaticObstacleSensorMove::automatic() {
   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::automatic()");

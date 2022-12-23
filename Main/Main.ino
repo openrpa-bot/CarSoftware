@@ -1,69 +1,67 @@
-#include <Arduino.h> 
-
-#include <IRremote.h>
+#include <Arduino.h>
 
 #include "CommonInclude.h"
-#include "MotorMovement.h"
-#include "UltrasonicOperations.h"
-#include "ServoOperations.h"
-#include "BluetoothOperations.h"
-#include "LedOperations.h"
-#include "IRRemoteReceiver.h"
-#include "LeftIRLineSensor.h"
-#include "RightIRLineSensor.h"
-#include "LineFollower.h"
+
 #include "AutomaticObstacleSensorMove.h"
+#include "BluetoothOperations.h"
+#include "IRRemoteReceiver.h"
+#include "LedOperations.h"
+#include "LeftIRLineSensor.h"
+#include "LineFollower.h"
+#include "MotorMovement.h"
+#include "RightIRLineSensor.h"
+#include "ServoOperations.h"
+#include "UltrasonicOperations.h"
 
 
-MotorMovement motorMovement = MotorMovement();
-UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
-ServoOperations servoOperations = ServoOperations();
-BluetoothOperations bluetoothOperations = BluetoothOperations();
-LedOperations ledOperations = LedOperations();
-IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
-LeftIRLineSensor leftIRLineSensor= LeftIRLineSensor();
-RightIRLineSensor rightIRLineSensor= RightIRLineSensor();
-LineFollower lineFollower = LineFollower();
 AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSensorMove();
+BluetoothOperations bluetoothOperations = BluetoothOperations();
+IRRemoteReceiver iRRemoteReceiver = IRRemoteReceiver();
+LedOperations ledOperations = LedOperations();
+LeftIRLineSensor leftIRLineSensor = LeftIRLineSensor();
+LineFollower lineFollower = LineFollower();
+MotorMovement motorMovement = MotorMovement();
+RightIRLineSensor rightIRLineSensor = RightIRLineSensor();
+ServoOperations servoOperations = ServoOperations();
+UltrasonicOperations ultrasonicOperations = UltrasonicOperations();
 
 OperationRequest *operationRequest = new OperationRequest();
 
-void setup() {
- 
- Serial.begin(SERIAL_PORT);
- 
- LOG_Main("Begin");
+void setup()
+{
 
- motorMovement.setup();
- ultrasonicOperations.setup();
- servoOperations.setup();
- bluetoothOperations.setup();
- ledOperations.setup();
- iRRemoteReceiver.setup();
- leftIRLineSensor.setup();
- leftIRLineSensor.setup();
- rightIRLineSensor.setup();
- automaticObstacleSensorMove.setup();
+  Serial.begin(SERIAL_PORT);
 
- LOG_Main("Begin");
+  LOG_Main("BEGIN");
+
+  automaticObstacleSensorMove.setup();
+  bluetoothOperations.setup();
+  iRRemoteReceiver.setup();
+  ledOperations.setup();
+  leftIRLineSensor.setup();
+  lineFollower.setup();
+  motorMovement.setup();
+  rightIRLineSensor.setup();
+  servoOperations.setup();
+  ultrasonicOperations.setup();
+  
+  LOG_Main("END");
 }
 
-void loop() {  
- LOG_Main("Loop Begin");
- 
- motorMovement.loop();
- ultrasonicOperations.loop();
- servoOperations.loop();
- bluetoothOperations.loop();
- ledOperations.loop();
- iRRemoteReceiver.loop();
- leftIRLineSensor.loop();
- leftIRLineSensor.loop();
- rightIRLineSensor.loop();
- automaticObstacleSensorMove.loop();
+void loop()
+{
+  LOG_Main_LOOP("Loop Begin");
 
- LOG_Main("Loop End"); 
+  automaticObstacleSensorMove.loop();
+  bluetoothOperations.loop();
+  iRRemoteReceiver.loop();
+  ledOperations.loop();
+  leftIRLineSensor.loop();
+  lineFollower.loop();
+  motorMovement.loop();
+  rightIRLineSensor.loop();
+  servoOperations.loop();
+  ultrasonicOperations.loop();
+
+  LOG_Main_LOOP("Loop End");
 }
-
-
-

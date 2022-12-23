@@ -1,4 +1,6 @@
 #include <Arduino.h> 
+#include <IRremote.h>
+
 #include "IRRemoteReceiver.h"
 
 void IRRemoteReceiver::setup() {
