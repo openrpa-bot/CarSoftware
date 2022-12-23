@@ -11,10 +11,6 @@ void ServoOperations::setup(){
 }
 
 void ServoOperations::rotate(int angle) {
-
-  if (LOG) {
-    //Serial.write("lookRight\n");
-  }
   m_MyServo->write(angle);
 }
 

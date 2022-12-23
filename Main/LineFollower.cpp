@@ -19,7 +19,15 @@ void LineFollower::loop() {
     #ifdef LOG_IRLineSensor
     Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
     #endif
- /*if (IrReceiver.decode())
+ /*
+ int state = 0;
+int flag = 0;
+
+int rightIRSensorValue;
+int leftIRSensorValue;
+bool isAutomatic = false;
+
+ if (IrReceiver.decode())
   {
     //int signalReceived = IrReceiver.decodedIRData;
     Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);

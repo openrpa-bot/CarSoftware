@@ -22,7 +22,7 @@ int UltrasonicOperations::UltrasonicRead()
 {
     delay(100);
     int cm = m_NewPing->ping_cm();
-    if (LOG)
+   // if (LOG)
     {
         Serial.print("readPing Distance cm");
         Serial.print("\n");
@@ -34,9 +34,9 @@ int UltrasonicOperations::UltrasonicRead()
     return cm;
 }
 int UltrasonicOperations::lookRight() {
-  if (LOG) {
+  //if (LOG) {
     Serial.write("lookRight\n");
-  }
+ // }
   //myservo.write(50);
   delay(500);
   int m_Distance = UltrasonicRead();
@@ -46,9 +46,9 @@ int UltrasonicOperations::lookRight() {
 }
 
 int UltrasonicOperations::lookLeft() {
-  if (LOG) {
+  //if (LOG) {
     Serial.write("lookLeft\n");
-  }
+  //}
   //myservo.write(130);
   delay(500);
   int m_Distance = UltrasonicRead();

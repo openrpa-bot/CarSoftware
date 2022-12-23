@@ -14,18 +14,4 @@
 #define FORWARD_IR_REMOTE_CODE
 #define FORWARD_CODE
 
-#define LOG true
-
-
-
-
-#define LOG_MotorMovementEnable
-
-
-#ifdef LOG_MotorMovementEnable
-#define LOG_MotorMovement(message) Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__FUNCTION__); Serial.write(":");  Serial.write(message); Serial.write("\n");
-#else
-#define LOG_MotorMovement(message)
-#endif
-
 #endif

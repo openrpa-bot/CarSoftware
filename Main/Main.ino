@@ -28,16 +28,12 @@ AutomaticObstacleSensorMove automaticObstacleSensorMove = AutomaticObstacleSenso
 
 OperationRequest *operationRequest = new OperationRequest();
 
-int state = 0;
-int flag = 0;
-
-int rightIRSensorValue;
-int leftIRSensorValue;
-bool isAutomatic = false;
-
 void setup() {
+ 
  Serial.begin(SERIAL_PORT);
  
+ LOG_Main("Begin");
+
  motorMovement.setup();
  ultrasonicOperations.setup();
  servoOperations.setup();
@@ -48,10 +44,13 @@ void setup() {
  leftIRLineSensor.setup();
  rightIRLineSensor.setup();
  automaticObstacleSensorMove.setup();
+
+ LOG_Main("Begin");
 }
 
-void loop() {
-  
+void loop() {  
+ LOG_Main("Loop Begin");
+ 
  motorMovement.loop();
  ultrasonicOperations.loop();
  servoOperations.loop();
@@ -62,7 +61,8 @@ void loop() {
  leftIRLineSensor.loop();
  rightIRLineSensor.loop();
  automaticObstacleSensorMove.loop();
- 
+
+ LOG_Main("Loop End"); 
 }
 
 
