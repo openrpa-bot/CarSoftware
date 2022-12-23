@@ -8,7 +8,7 @@ class LineFollower {
 public:
    LineFollower();
    void setup();
-
+   void loop();
 private:
 
 };

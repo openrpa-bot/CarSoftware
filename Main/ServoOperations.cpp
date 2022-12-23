@@ -18,3 +18,9 @@ void ServoOperations::rotate(int angle) {
   m_MyServo->write(angle);
 }
 
+void ServoOperations::loop() {
+    #ifdef LOG_IRLineSensor
+    Serial.write(__FILE__); Serial.write(":"); Serial.write(__LINE__); Serial.write(":"); Serial.write(__func__); Serial.write("\n");   
+    #endif
+
+}    

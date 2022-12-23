@@ -7,7 +7,7 @@ class IRRemoteReceiver {
 public:
 IRRemoteReceiver();
 void setup();
-
+void loop();
 private:
 
 };

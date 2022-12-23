@@ -7,7 +7,7 @@ class LedOperations {
 public:
 LedOperations();
 void setup();
-
+void loop();
 private:
 
 };

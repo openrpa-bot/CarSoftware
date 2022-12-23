@@ -7,7 +7,7 @@ class AutomaticObstacleSensorMove {
 public:
 AutomaticObstacleSensorMove();
 void setup();
-
+void loop();
 private:
 
 };

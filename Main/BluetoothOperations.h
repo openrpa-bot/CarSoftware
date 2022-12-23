@@ -9,7 +9,7 @@ public:
 BluetoothOperations();
 int BluetoothTrueRoFalse( );
 void setup();
-
+void loop();
 private:
 SoftwareSerial *m_Bluetooth = NULL;
 

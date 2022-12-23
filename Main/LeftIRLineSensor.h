@@ -7,7 +7,7 @@ class LeftIRLineSensor {
 public:
 LeftIRLineSensor();
 void setup();
-
+void loop();
 private:
 
 };

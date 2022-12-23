@@ -8,7 +8,7 @@ class ServoOperations {
 public:
    ServoOperations();
    void setup();
-   
+   void loop();
 void rotate(int angle);
 
 private:

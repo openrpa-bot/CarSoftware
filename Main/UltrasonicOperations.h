@@ -12,7 +12,7 @@ public:
    int lookRight();
    int lookLeft();
    int UltrasonicRead();
-	
+	void loop();
 private:
 
 

@@ -20,7 +20,7 @@ public:
     void moveBackward();
     void turnRight();
     void turnLeft();
-
+    void loop();
     void setSpeed(int iSpeed){
         this->m_iSpeed = iSpeed;
     }
@@ -40,4 +40,6 @@ private:
 
     boolean goesForward = false;
 };
+
+
 #endif

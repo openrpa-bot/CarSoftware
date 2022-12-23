@@ -49,6 +49,22 @@ void setup() {
 }
 
 void loop() {
+  
+  
+  motorMovement.loop();
+ ultrasonicOperations.loop();
+ servoOperations.loop();
+ bluetoothOperations.loop();
+ ledOperations.loop();
+ iRRemoteReceiver.loop();
+ leftIRLineSensor.loop();
+ leftIRLineSensor.loop();
+ rightIRLineSensor.loop();
+ automaticObstacleSensorMove.loop();
+  
+  
+  
+  
   /*if (IrReceiver.decode())
   {
     //int signalReceived = IrReceiver.decodedIRData;
@@ -111,5 +127,6 @@ void automatic() {
     motorMovement.moveForward();
   }
 }
+
 
 
