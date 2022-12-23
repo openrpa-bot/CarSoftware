@@ -52,7 +52,6 @@ void setup() {
 
 void loop() {
   
-  
  motorMovement.loop();
  ultrasonicOperations.loop();
  servoOperations.loop();
@@ -63,71 +62,7 @@ void loop() {
  leftIRLineSensor.loop();
  rightIRLineSensor.loop();
  automaticObstacleSensorMove.loop();
-  
-  
-  
-  
-  /*if (IrReceiver.decode())
-  {
-    //int signalReceived = IrReceiver.decodedIRData;
-    Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
-    IrReceiver.printIRResultShort(&Serial);
-    //Serial.print("Code: "); Serial.print(signalReceived, HEX); Serial.println(",\n");
-    IrReceiver.resume();
-  }
-  return;*/
-  //if(Serial.available() > 0){
-  //command = Serial.read();
-  
-  if (rightIRSensorValue == LOW && leftIRSensorValue == LOW) {
-    //if(LOG){ Serial.write("Skipped\n"); }
-    automatic();
-  } else if (rightIRSensorValue == HIGH && leftIRSensorValue == LOW) {
-    motorMovement.turnRight();
-  }
-
-  else if (rightIRSensorValue == LOW && leftIRSensorValue == HIGH) {
-    motorMovement.turnLeft();
-  } else {
-    motorMovement.moveForward();
-  }
-
-  rightIRSensorValue = digitalRead(RIGHT_LINE_FOLLOW_IR);
-  leftIRSensorValue = digitalRead(IR_SENSOR_LEFT);
-}
-void automatic() {
-  if (!isAutomatic) return;
-  int distance = ultrasonicOperations.UltrasonicRead();
-  
-  if (LOG) {
-    Serial.print("automatic distance\n");
-  }
-  int distanceR = 0;
-  int distanceL = 0;
-  delay(1000);
-
-  if (distance <= REVERCE_DISTANCE) {
-    motorMovement.Stop();
-    delay(100);
-    motorMovement.moveBackward();
-    delay(200);
-    motorMovement.Stop();
-    delay(200);
-    distanceR = ultrasonicOperations.lookRight();
-    delay(200);
-    distanceL = ultrasonicOperations.lookLeft();
-    delay(200);
-
-    if (distanceR >= distanceL) {
-      motorMovement.turnRight();
-      motorMovement.Stop();
-    } else {
-      motorMovement.turnLeft();
-      motorMovement.Stop();
-    }
-  } else {
-    motorMovement.moveForward();
-  }
+ 
 }
 
 

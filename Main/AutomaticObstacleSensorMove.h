@@ -8,6 +8,7 @@ public:
 AutomaticObstacleSensorMove();
 void setup();
 void loop();
+void automatic();
 private:
 
 };
