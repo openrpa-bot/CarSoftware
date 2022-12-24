@@ -16,3 +16,6 @@ void RightIRLineSensor::loop()
 {
     LOG_RightIRLineSensor_LOOP("RightIRLineSensor::loop()");
 }
+int RightIRLineSensor::GetValue(){
+    return digitalRead(RIGHT_LINE_FOLLOW_IR);
+}

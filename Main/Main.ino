@@ -18,13 +18,13 @@ BluetoothOperations *bluetoothOperations = new BluetoothOperations();
 IRRemoteReceiver *iRRemoteReceiver = new IRRemoteReceiver();
 LedOperations *ledOperations = new LedOperations();
 LeftIRLineSensor *leftIRLineSensor = new LeftIRLineSensor();
-LineFollower *lineFollower = new LineFollower();
 MotorMovement *motorMovement = new MotorMovement();
 RightIRLineSensor *rightIRLineSensor = new RightIRLineSensor();
 ServoOperations *servoOperations = new ServoOperations();
 UltrasonicOperations *ultrasonicOperations = new UltrasonicOperations(servoOperations);
 OperationRequest *operationRequest = new OperationRequest();
 AutomaticObstacleSensorMove *automaticObstacleSensorMove = new AutomaticObstacleSensorMove(motorMovement, ultrasonicOperations);
+LineFollower *lineFollower = new LineFollower(leftIRLineSensor, rightIRLineSensor, motorMovement);
 
 void setup()
 {
@@ -118,7 +118,7 @@ void loop()
       automaticObstacleSensorMove->CruseControlModeStart();
       break;
  case OperationType::LineFollowerMode:
-      lineFollower->LineFollowerMode();
+      lineFollower->LineFollowerModeActivate();
       break;
     default:
       SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");

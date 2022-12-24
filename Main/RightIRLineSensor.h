@@ -9,6 +9,8 @@ public:
     RightIRLineSensor();
     void setup();
     void loop();
+    int GetValue();
+    
 private:
 };
 #endif
