@@ -1,5 +1,6 @@
 #ifndef DefinedConstant_h
 #define DefinedConstant_h
+//#define BLUETOOTH_OVER_SERIEL
 
 #define REVERCE_DISTANCE 30
 #define MAX_DISTANCE 200

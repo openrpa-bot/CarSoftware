@@ -1,20 +1,41 @@
 #ifndef PnDetails_h
 #define PnDetails_h
 
-#define ULTRASONIC_ECHO_PIN A0
-#define ULTRASONIC_TRIG_PIN A1
+#define RELAY_1 53
+#define RELAY_2 51
+#define RELAY_3 49
+#define RELAY_4 47
+#define RELAY_5 45
+#define RELAY_6 43
+#define RELAY_7 41
+#define RELAY_8 39
 
-#define IR_RECEIVE_PIN A2
+#define NRF24L01_WIRE1 35
+#define NRF24L01_WIRE2 33
+#define NRF24L01_WIRE3 31
+#define NRF24L01_WIRE4 29
+#define NRF24L01_WIRE5 27
 
-#define LEFT_LINE_FOLLOW_IR A3
-#define SOUND_PIN A4
-#define RIGHT_LINE_FOLLOW_IR A5
+#define NRF24L01_CE 35
+#define NRF24L01_SCK 33
+#define NRF24L01_MISO 31
+#define NRF24L01_CSN 29
+#define NRF24L01_MOSI 27
 
-#define BLUETOOTH_TX 0
-#define BLUETOOTH_RX 1
+#define ULTRASONIC_ECHO_PIN 23
+#define ULTRASONIC_TRIG_PIN 25
 
-#define RELAY_MODULE_PIN_1_HEAD_LAMP 2
-#define RELAY_MODULE_PIN_2_TAIL_LAMP 13
+#define IR_RECEIVE_PIN A5
+
+#define LEFT_LINE_FOLLOW_IR A1
+#define SOUND_PIN A2
+#define RIGHT_LINE_FOLLOW_IR A0
+
+#define BLUETOOTH_TX 14
+#define BLUETOOTH_RX 15
+
+#define RELAY_MODULE_PIN_1_HEAD_LAMP RELAY_1
+#define RELAY_MODULE_PIN_2_TAIL_LAMP RELAY_2
 
 #define SERVO_PIN_FREE 9
 #define SERVO_PIN_IN_USE 10
@@ -29,12 +50,16 @@ In the case of using Stepper motor, pins 11 and 3 for #1, pins 5 and 6 for #2 an
 You can use free pins by wired connections.
 */
 // Pins 4, 7, 8, and 12 may also all be used
-#define RELAY_MODULE_PIN_3_LEFT_INDECATOR SERVO_PIN_FREE
-// #define RELAY_MODULE_PIN_4_RIGHT_INDECATOR 13
+#define RELAY_MODULE_PIN_3_LEFT_INDECATOR RELAY_3
+#define RELAY_MODULE_PIN_4_RIGHT_INDECATOR RELAY_4
 
 #define DCMOTER_LEFT_FRONT 1
 #define DCMOTER_LEFT_BCAK 2
 #define DCMOTER_RIGHT_FRONT 3
 #define DCMOTER_RIGHT_BACK 4
+
+
+
+
 
 #endif
