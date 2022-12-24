@@ -22,7 +22,7 @@ LineFollower *lineFollower = new LineFollower();
 MotorMovement *motorMovement = new MotorMovement();
 RightIRLineSensor *rightIRLineSensor = new RightIRLineSensor();
 ServoOperations *servoOperations = new ServoOperations();
-UltrasonicOperations *ultrasonicOperations = new UltrasonicOperations();
+UltrasonicOperations *ultrasonicOperations = new UltrasonicOperations(servoOperations);
 OperationRequest *operationRequest = new OperationRequest();
 AutomaticObstacleSensorMove *automaticObstacleSensorMove = new AutomaticObstacleSensorMove(motorMovement, ultrasonicOperations);
 
@@ -115,7 +115,7 @@ void loop()
       ledOperations->HendLightOff();
       break;
  case OperationType:: CruseControlMode:
-      automaticObstacleSensorMove->CruseControlMode();
+      automaticObstacleSensorMove->CruseControlModeStart();
       break;
  case OperationType::LineFollowerMode:
       lineFollower->LineFollowerMode();

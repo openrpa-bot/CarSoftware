@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "UltrasonicOperations.h"
 
-UltrasonicOperations::UltrasonicOperations()
+UltrasonicOperations::UltrasonicOperations(ServoOperations *servoOperations)
 {
   LOG_UltrasonicOperations("UltrasonicOperations::UltrasonicOperations()");
   
@@ -34,7 +34,7 @@ int UltrasonicOperations::UltrasonicRead()
 
   delay(100);
   int cm = m_NewPing->ping_cm();
-
+  Serial.println(cm);
   if (cm == 0)
   {
     cm = 250;
@@ -45,23 +45,22 @@ int UltrasonicOperations::lookRight()
 {
   LOG_UltrasonicOperations("UltrasonicOperations::lookRight()");
 
-  // myservo.write(50);
+  m_ServoOperations->rotate(50);
   delay(500);
-  int m_Distance = UltrasonicRead();
+  int cm = UltrasonicRead();
   delay(100);
-  // myservo.write(90);
-  return m_Distance;
+  m_ServoOperations->rotate(90);
+  return cm;
 }
 
 int UltrasonicOperations::lookLeft()
 {
   LOG_UltrasonicOperations("UltrasonicOperations::lookLeft()");
 
-  // myservo.write(130);
+  m_ServoOperations->rotate(130);
   delay(500);
-  int m_Distance = UltrasonicRead();
+  int cm = UltrasonicRead();
   delay(100);
-  // myservo.write(90);
-  return m_Distance;
-  delay(100);
+  m_ServoOperations->rotate(90);
+  return cm;
 }

@@ -2,12 +2,13 @@
 #define UltrasonicOperations_h
 #include <Arduino.h>
 #include "CommonInclude.h"
+#include "ServoOperations.h"
 #include <NewPing.h>
 
 class UltrasonicOperations
 {
 public:
-   UltrasonicOperations();
+   UltrasonicOperations(ServoOperations *servoOperations);
 
    void setup();
    int lookRight();
@@ -17,6 +18,7 @@ public:
 
 private:
    NewPing *m_NewPing = NULL;
+   ServoOperations *m_ServoOperations = NULL;
    int m_Distance;
 };
 #endif

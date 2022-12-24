@@ -12,7 +12,8 @@ public:
     void setup();
     void loop();
     
-    void CruseControlMode();
+    void CruseControlModeStart();
+    void CruseControlModeEnd();
     
 
 private:
