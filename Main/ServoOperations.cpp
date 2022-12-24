@@ -11,6 +11,12 @@ void ServoOperations::setup()
 {
   LOG_ServoOperations("ServoOperations::setup()");
   m_MyServo->attach(SERVO_PIN_IN_USE);
+  m_MyServo->write(0);
+  delay(SERVO_ALLIGN_DELAY);
+  m_MyServo->write(90);
+  delay(SERVO_ALLIGN_DELAY);
+  m_MyServo->write(180);
+  delay(SERVO_ALLIGN_DELAY);
   m_MyServo->write(90);
 }
 

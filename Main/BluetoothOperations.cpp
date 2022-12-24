@@ -3,13 +3,17 @@
 BluetoothOperations::BluetoothOperations()
 {
   LOG_BluetoothOperations("BluetoothOperations::BluetoothOperations()");
+  #ifdef BLUETOOTH_OVER_SERIEL
   m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
+  #endif
 }
 
 void BluetoothOperations::setup()
 {  
   LOG_BluetoothOperations("BluetoothOperations::setup()");  
+  #ifdef BLUETOOTH_OVER_SERIEL
   m_Bluetooth->begin(BLUETOOTH_PORT);
+  #endif
 }
 
 void BluetoothOperations::loop()
@@ -22,13 +26,17 @@ int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operat
   LOG_BluetoothOperations("BluetoothOperations::CheckBluetoothOperationRequest()");
 
   operationRequest->operationType = OperationType::None;
-
+#ifdef BLUETOOTH_OVER_SERIEL
   if (m_Bluetooth->available() > 0)
   {
-    int command = m_Bluetooth->read();
+    char command = m_Bluetooth->read();
+#else
+  if (Serial.available() > 0)
+  {
+    char command = Serial.read();
+#endif
     
-    Serial.print(command); Serial.print(": Received the BlueTooth Command\n");
-
+    SERIAL_BLUETOOTH_PRINT("Received BlueTooth Command:"); SERIAL_BLUETOOTH_PRINTLN(command);
     switch (command)
     {
     case 'F':
@@ -91,6 +99,7 @@ int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operat
       break;
     default:
       operationRequest->operationType = OperationType::Undefined;
+      SERIAL_BLUETOOTH_PRINT("Unknown Command Received: "); SERIAL_BLUETOOTH_PRINTLN(command);
       break;
     }  
   }

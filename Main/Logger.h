@@ -1,6 +1,11 @@
 #ifndef Logger_h
 #define Logger_h
 
+#define SERIAL_PRINTLN(message) Serial.println(message)
+#define SERIAL_PRINT(message) Serial.print(message)
+#define SERIAL_BLUETOOTH_PRINTLN(message) Serial.println(message)
+#define SERIAL_BLUETOOTH_PRINT(message) Serial.print(message)
+
 //#define LOG_LOOP
 #define LOG_Enable
 /*

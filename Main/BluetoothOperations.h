@@ -13,6 +13,9 @@ public:
     int CheckBluetoothOperationRequest(OperationRequest* operationRequest);
 
 private:
+#ifdef BLUETOOTH_OVER_SERIEL
     SoftwareSerial *m_Bluetooth = NULL;
+#endif   
+
 };
 #endif

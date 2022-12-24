@@ -9,6 +9,8 @@ public:
     IRRemoteReceiver();
     void setup();
     void loop();
+    int CheckIRRemoteOperationRequest(OperationRequest* operationRequest);
+
 private:
 };
 #endif

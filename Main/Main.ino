@@ -49,7 +49,6 @@ void loop()
 {
   LOG_Main_LOOP("Loop Begin");
 
-  /*
   automaticObstacleSensorMove->loop();
   bluetoothOperations->loop();
   iRRemoteReceiver->loop();
@@ -60,24 +59,37 @@ void loop()
   rightIRLineSensor->loop();
   servoOperations->loop();
   ultrasonicOperations->loop();
-*/
+
   LOG_Main_LOOP("Loop End");
 
-    if (!bluetoothOperations->CheckBluetoothOperationRequest(operationRequest))
-    {
-      // LOG("Not received any messages");
-      //Serial.print(operationRequest->operationType);
-      //Serial.print(":");
-      //Serial.println(operationRequest->operationRequestData.Speed);
-    }
-    else
-    {
-      //LOG(operationRequest->operationType);
+  if (bluetoothOperations->CheckBluetoothOperationRequest(operationRequest))
+  {
+    SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
+    SERIAL_PRINT(operationRequest->operationType);
+    SERIAL_PRINT(",");
+    SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
+  }
+  else if (iRRemoteReceiver->CheckIRRemoteOperationRequest(operationRequest))
+  {
+  }
 
-      Serial.print(operationRequest->operationType);
-      Serial.print(":");
-      Serial.println(operationRequest->operationRequestData.Speed);
-      
+  if (!(operationRequest->operationType == OperationType::None))
+  {
+    switch (operationRequest->operationType)
+    {
+    case OperationType::MoveForward:
+      motorMovement->moveForward();
+      break;
+    case OperationType::Speed:
+      motorMovement->Speed(operationRequest);
+      break;
+    default:
+      SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
+      SERIAL_PRINT(operationRequest->operationType);
+      SERIAL_PRINT(",");
+      SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
+      break;
     }
+  }
   delay(100);
 }

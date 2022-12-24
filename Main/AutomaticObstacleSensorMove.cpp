@@ -8,7 +8,6 @@ AutomaticObstacleSensorMove::AutomaticObstacleSensorMove()
 
 void AutomaticObstacleSensorMove::setup()
 {
-  Serial.begin(SERIAL_PORT);
   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::setup()");
 }
 

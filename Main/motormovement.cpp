@@ -11,11 +11,11 @@ MotorMovement::MotorMovement()
   this->m4 = new AF_DCMotor(DCMOTER_RIGHT_BACK, MOTOR34_64KHZ);
 }
 
-MotorMovement::MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement)
+MotorMovement::MotorMovement(int iMaxSpeed, int iSpeedIncrement)
 {
   LOG_MotorMovement("MotorMovement::MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement)");
 
-  this->m_iSpeed = iSpeed;
+  
   this->m_iMaxSpeed = iMaxSpeed;
   this->m_iSpeedIncrement = iSpeedIncrement;
   MotorMovement();
@@ -24,6 +24,25 @@ MotorMovement::MotorMovement(int iSpeed, int iMaxSpeed, int iSpeedIncrement)
 void MotorMovement::setup()
 {
   LOG_MotorMovement("MotorMovement::setup()");
+  m1->setSpeed(200);
+  m2->setSpeed(200);
+  m3->setSpeed(200);
+  m4->setSpeed(200);
+
+  m1->run(FORWARD);
+  m2->run(FORWARD);
+  m3->run(FORWARD);
+  m4->run(FORWARD);
+  delay(500);
+  m1->run(BACKWARD);
+  m2->run(BACKWARD);
+  m3->run(BACKWARD);
+  m4->run(BACKWARD);
+  delay(500);
+  m1->setSpeed(0);
+  m2->setSpeed(0);
+  m3->setSpeed(0);
+  m4->setSpeed(0);
 }
 
 void MotorMovement::loop()
@@ -41,15 +60,15 @@ void MotorMovement::Stop()
   m4->run(RELEASE);
 }
 
-void MotorMovement::Speed()
+void MotorMovement::Speed(OperationRequest *operationRequest)
 {
   LOG_MotorMovement("MotorMovement::Speed()");
 
-  m1->setSpeed(this->m_iSpeed);
-  m2->setSpeed(this->m_iSpeed);
-  m3->setSpeed(this->m_iSpeed);
-  m4->setSpeed(this->m_iSpeed);
-  delay(5);
+  m1->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
+  m2->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
+  m3->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
+  m4->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
+  delay(500);
 }
 
 void MotorMovement::moveForward()
