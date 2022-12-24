@@ -101,11 +101,23 @@ void loop()
     case OperationType::StopMoveing:
       motorMovement->Stop();
       break;
-      case OperationType::BackLightOff:
+    case OperationType::BackLightOff:
       ledOperations->BackLightOff();
       break;
-      case OperationType::BackLightOn:
+    case OperationType::BackLightOn:
       ledOperations->BackLightOn();
+      break;
+    case OperationType::HendLightOn:
+      ledOperations->HendLightOn();
+      break;
+    case OperationType::HendLightOff:
+      ledOperations->HendLightOff();
+      break;
+ case OperationType:: CruseControlMode:
+      automaticObstacleSensorMove->CruseControlMode();
+      break;
+ case OperationType::LineFollowerMode:
+      lineFollower->LineFollowerMode();
       break;
     default:
       SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
@@ -117,3 +129,5 @@ void loop()
   }
   delay(100);
 }
+
+ 

@@ -17,7 +17,7 @@ enum OperationType
   CruseControlMode,
   LineFollowerMode,
 
-  HendLightOn,
+  HendLightOn,   
   HendLightOff,
   BackLightOn,
   BackLightOff,

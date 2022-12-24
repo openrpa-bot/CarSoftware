@@ -9,6 +9,7 @@ public:
    LineFollower();
    void setup();
    void loop();
+   void LineFollowerMode();
 private:
 };
 #endif

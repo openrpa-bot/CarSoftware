@@ -51,3 +51,4 @@ void LineFollower::loop()
   leftIRSensorValue = digitalRead(IR_SENSOR_LEFT);
   }*/
 }
+void LineFollower::LineFollowerMode(){}

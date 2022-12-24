@@ -10,8 +10,8 @@ public:
     void setup();
     void loop();
     
-    void FaontLightOn();
-    void FrontLightOff();
+    void HendLightOn();
+    void HendLightOff();
     void BackLightOn();
     void BackLightOff();
     void DeeparOn();

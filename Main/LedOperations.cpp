@@ -15,9 +15,9 @@ void LedOperations::loop()
 {
     LOG_LedOperations_LOOP("LedOperations::loop()");
 }
-void LedOperations::FaontLightOn() { LOG_LedOperations_LOOP("LedOperations::FaontLightOn()"); }
+void LedOperations::HendLightOn() { LOG_LedOperations_LOOP("LedOperations::FaontLightOn()"); }
 
-void LedOperations::FrontLightOff() { LOG_LedOperations_LOOP("LedOperations::FrontLightOff()"); }
+void LedOperations::HendLightOff() { LOG_LedOperations_LOOP("LedOperations::FrontLightOff()"); }
 
 void LedOperations::BackLightOn() { LOG_LedOperations_LOOP("LedOperations::BackLightOn()"); }
 

@@ -9,7 +9,11 @@ public:
     AutomaticObstacleSensorMove();
     void setup();
     void loop();
-    void automatic();
+    
+    void CruseControlMode();
+    
+
 private:
+void automatic();
 };
 #endif

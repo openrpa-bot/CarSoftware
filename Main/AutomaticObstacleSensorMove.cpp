@@ -15,6 +15,8 @@ void AutomaticObstacleSensorMove::loop()
 {
   LOG_AutomaticObstacleSensorMove_LOOP("AutomaticObstacleSensorMove::loop()");
 }
+void AutomaticObstacleSensorMove::CruseControlMode(){automatic();}
+
 
 void AutomaticObstacleSensorMove::automatic()
 {
