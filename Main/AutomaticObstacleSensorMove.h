@@ -2,11 +2,13 @@
 #define AutomaticObstacleSensorMove_h
 #include <Arduino.h>
 #include "CommonInclude.h"
+#include "MotorMovement.h"
+#include "UltrasonicOperations.h"
 
 class AutomaticObstacleSensorMove
 {
 public:
-    AutomaticObstacleSensorMove();
+    AutomaticObstacleSensorMove(MotorMovement *motorMovement, UltrasonicOperations *ultrasonicOperations);
     void setup();
     void loop();
     
@@ -15,5 +17,9 @@ public:
 
 private:
 void automatic();
+MotorMovement *m_MotorMovement;
+UltrasonicOperations *m_UltrasonicOperations;
+bool m_IsCruseControlModeActive;
+
 };
 #endif

@@ -1,9 +1,12 @@
 #include <Arduino.h>
 #include "AutomaticObstacleSensorMove.h"
 
-AutomaticObstacleSensorMove::AutomaticObstacleSensorMove()
+AutomaticObstacleSensorMove::AutomaticObstacleSensorMove(MotorMovement *motorMovement, UltrasonicOperations *ultrasonicOperations)
 {
   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::AutomaticObstacleSensorMove()");
+  this->m_MotorMovement = motorMovement;
+  this->m_UltrasonicOperations = ultrasonicOperations;
+  this->m_IsCruseControlModeActive = false;
 }
 
 void AutomaticObstacleSensorMove::setup()
@@ -15,42 +18,43 @@ void AutomaticObstacleSensorMove::loop()
 {
   LOG_AutomaticObstacleSensorMove_LOOP("AutomaticObstacleSensorMove::loop()");
 }
-void AutomaticObstacleSensorMove::CruseControlMode(){automatic();}
-
+void AutomaticObstacleSensorMove::CruseControlMode()
+{
+  this->automatic();
+}
 
 void AutomaticObstacleSensorMove::automatic()
 {
   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::automatic()");
-  /* if (!isAutomatic) return;
-   int distance = ultrasonicOperations.UltrasonicRead();
-
-   if (LOG) {
-     Serial.print("automatic distance\n");
-   }
+   
+   if (!m_IsCruseControlModeActive) return;
+   
+   int distance =  this->m_UltrasonicOperations->UltrasonicRead();
    int distanceR = 0;
    int distanceL = 0;
+   
    delay(1000);
 
    if (distance <= REVERCE_DISTANCE) {
-     motorMovement.Stop();
+     m_MotorMovement->Stop();
      delay(100);
-     motorMovement.moveBackward();
+     m_MotorMovement->moveBackward();
      delay(200);
-     motorMovement.Stop();
+     m_MotorMovement->Stop();
      delay(200);
-     distanceR = ultrasonicOperations.lookRight();
+     distanceR =  this->m_UltrasonicOperations->lookRight();
      delay(200);
-     distanceL = ultrasonicOperations.lookLeft();
+     distanceL =  this->m_UltrasonicOperations->lookLeft();
      delay(200);
 
      if (distanceR >= distanceL) {
-       motorMovement.turnRight();
-       motorMovement.Stop();
+       m_MotorMovement->turnRight();
+       m_MotorMovement->Stop();
      } else {
-       motorMovement.turnLeft();
-       motorMovement.Stop();
+       m_MotorMovement->turnLeft();
+       m_MotorMovement->Stop();
      }
    } else {
-     motorMovement.moveForward();
-   }*/
+     m_MotorMovement->moveForward();
+   }
 }

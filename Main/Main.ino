@@ -13,7 +13,7 @@
 #include "ServoOperations.h"
 #include "UltrasonicOperations.h"
 
-AutomaticObstacleSensorMove *automaticObstacleSensorMove = new AutomaticObstacleSensorMove();
+
 BluetoothOperations *bluetoothOperations = new BluetoothOperations();
 IRRemoteReceiver *iRRemoteReceiver = new IRRemoteReceiver();
 LedOperations *ledOperations = new LedOperations();
@@ -24,6 +24,7 @@ RightIRLineSensor *rightIRLineSensor = new RightIRLineSensor();
 ServoOperations *servoOperations = new ServoOperations();
 UltrasonicOperations *ultrasonicOperations = new UltrasonicOperations();
 OperationRequest *operationRequest = new OperationRequest();
+AutomaticObstacleSensorMove *automaticObstacleSensorMove = new AutomaticObstacleSensorMove(motorMovement, ultrasonicOperations);
 
 void setup()
 {
