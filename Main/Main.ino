@@ -83,6 +83,30 @@ void loop()
     case OperationType::Speed:
       motorMovement->Speed(operationRequest);
       break;
+    case OperationType::MoveBackword:
+      motorMovement->moveBackward();
+      break;
+      case OperationType::LeftTurn:
+      motorMovement->moveBackward();
+      break;
+      case OperationType::RightTurn:
+      motorMovement->moveBackward();
+      break;
+       case OperationType::DeeperOff:
+      ledOperations->DeeparOff();
+      break;
+    case OperationType::DeeperOn:
+      ledOperations->DeeparOn();
+      break;
+    case OperationType::StopMoveing:
+      motorMovement->Stop();
+      break;
+      case OperationType::BackLightOff:
+      ledOperations->BackLightOff();
+      break;
+      case OperationType::BackLightOn:
+      ledOperations->BackLightOn();
+      break;
     default:
       SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
       SERIAL_PRINT(operationRequest->operationType);

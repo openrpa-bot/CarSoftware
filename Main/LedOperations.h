@@ -9,6 +9,14 @@ public:
     LedOperations();
     void setup();
     void loop();
+    
+    void FaontLightOn();
+    void FrontLightOff();
+    void BackLightOn();
+    void BackLightOff();
+    void DeeparOn();
+    void DeeparOff();
+    
 private:
 };
 #endif
