@@ -11,16 +11,17 @@ public:
     AutomaticObstacleSensorMove(MotorMovement *motorMovement, UltrasonicOperations *ultrasonicOperations);
     void setup();
     void loop();
-    
+
     void CruseControlModeStart();
-    void CruseControlModeEnd();
-    
+    void CruseControlModeRelease()
+    {
+        m_IsCruseControlModeActive = false;
+    }
 
 private:
-void automatic();
-MotorMovement *m_MotorMovement;
-UltrasonicOperations *m_UltrasonicOperations;
-bool m_IsCruseControlModeActive;
-
+    void automatic();
+    MotorMovement *m_MotorMovement;
+    UltrasonicOperations *m_UltrasonicOperations;
+    bool m_IsCruseControlModeActive;
 };
 #endif

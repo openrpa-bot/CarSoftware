@@ -29,10 +29,6 @@ void AutomaticObstacleSensorMove::CruseControlModeStart()
   this->automatic();
 }
 
-void AutomaticObstacleSensorMove::CruseControlModeEnd()
-{
-  m_IsCruseControlModeActive = false;
-}
 void AutomaticObstacleSensorMove::automatic()
 {
   LOG_AutomaticObstacleSensorMove("AutomaticObstacleSensorMove::automatic()");

@@ -1,41 +1,63 @@
 #include "BluetoothOperations.h"
 
+
 BluetoothOperations::BluetoothOperations()
 {
   LOG_BluetoothOperations("BluetoothOperations::BluetoothOperations()");
-  #ifdef BLUETOOTH_OVER_SERIEL
-  m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
-  #endif
+  //Serial1.begin(BLUETOOTH_PORT);
+   m_SoftwareSerial = new SoftwareSerial(19, 18);
+   m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
 }
 
 void BluetoothOperations::setup()
 {  
   LOG_BluetoothOperations("BluetoothOperations::setup()");  
-  #ifdef BLUETOOTH_OVER_SERIEL
-  m_Bluetooth->begin(BLUETOOTH_PORT);
-  #endif
+  m_SoftwareSerial->begin(BLUETOOTH_PORT);
+  //m_Bluetooth->begin(BLUETOOTH_PORT);
 }
 
 void BluetoothOperations::loop()
 {
   LOG_BluetoothOperations_LOOP("BluetoothOperations::loop()");
+  //Serial1.println("Testing...");
+  //m_SoftwareSerial->println("Testing...");
+  delay(500);
 }
 
-int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operationRequest)
+char BluetoothOperations::bluetoothRead(){
+ /*if (Serial1.available() > 0)
+  {
+   return Serial1.read();
+  }
+   if (m_Bluetooth->available() > 0)
+  {
+    char command = m_Bluetooth->read();
+    */
+  return 0;
+}
+char BluetoothOperations::serialRead(){
+ if (Serial.available() > 0)
+  {
+   return Serial.read();
+  }
+  return 0;
+}
+
+int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operationRequest, bool isBluetooth)
 {
   LOG_BluetoothOperations("BluetoothOperations::CheckBluetoothOperationRequest()");
 
   operationRequest->operationType = OperationType::None;
-#ifdef BLUETOOTH_OVER_SERIEL
-  if (m_Bluetooth->available() > 0)
+  
+  char command = 0;
+  if(isBluetooth){
+      command = bluetoothRead();
+  } else {
+      command = serialRead();
+  }
+
+  if (command > 0)
   {
-    char command = m_Bluetooth->read();
-#else
-  if (Serial.available() > 0)
-  {
-    char command = Serial.read();
-#endif
-    
     SERIAL_BLUETOOTH_PRINT("Received BlueTooth Command:"); SERIAL_BLUETOOTH_PRINTLN(command);
     switch (command)
     {

@@ -10,12 +10,12 @@ public:
     BluetoothOperations();
     void setup();
     void loop();
-    int CheckBluetoothOperationRequest(OperationRequest* operationRequest);
+    int CheckBluetoothOperationRequest(OperationRequest* operationRequest, bool isBluetooth);
 
 private:
-#ifdef BLUETOOTH_OVER_SERIEL
+    char bluetoothRead();
+    char serialRead();
+    SoftwareSerial *m_SoftwareSerial = NULL;
     SoftwareSerial *m_Bluetooth = NULL;
-#endif   
-
 };
 #endif

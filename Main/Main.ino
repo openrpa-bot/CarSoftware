@@ -13,7 +13,6 @@
 #include "ServoOperations.h"
 #include "UltrasonicOperations.h"
 
-
 BluetoothOperations *bluetoothOperations = new BluetoothOperations();
 IRRemoteReceiver *iRRemoteReceiver = new IRRemoteReceiver();
 LedOperations *ledOperations = new LedOperations();
@@ -63,15 +62,24 @@ void loop()
 
   LOG_Main_LOOP("Loop End");
 
-  if (bluetoothOperations->CheckBluetoothOperationRequest(operationRequest))
+  if (bluetoothOperations->CheckBluetoothOperationRequest(operationRequest, true))
   {
-    SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
+    SERIAL_PRINT("Received BlueTooth Command(Type, Speed):");
     SERIAL_PRINT(operationRequest->operationType);
     SERIAL_PRINT(",");
     SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
-  }
-  else if (iRRemoteReceiver->CheckIRRemoteOperationRequest(operationRequest))
+  } else if (bluetoothOperations->CheckBluetoothOperationRequest(operationRequest, false))
   {
+    SERIAL_PRINT("Received Serial Command(Type, Speed):");
+    SERIAL_PRINT(operationRequest->operationType);
+    SERIAL_PRINT(",");
+    SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
+  } else if (iRRemoteReceiver->CheckIRRemoteOperationRequest(operationRequest))
+  {
+    SERIAL_PRINT("Received IR Command(Type, Speed):");
+    SERIAL_PRINT(operationRequest->operationType);
+    SERIAL_PRINT(",");
+    SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
   }
 
   if (!(operationRequest->operationType == OperationType::None))
@@ -87,13 +95,13 @@ void loop()
     case OperationType::MoveBackword:
       motorMovement->moveBackward();
       break;
-      case OperationType::LeftTurn:
+    case OperationType::LeftTurn:
       motorMovement->moveBackward();
       break;
-      case OperationType::RightTurn:
+    case OperationType::RightTurn:
       motorMovement->moveBackward();
       break;
-       case OperationType::DeeperOff:
+    case OperationType::DeeperOff:
       ledOperations->DeeparOff();
       break;
     case OperationType::DeeperOn:
@@ -114,10 +122,12 @@ void loop()
     case OperationType::HendLightOff:
       ledOperations->HendLightOff();
       break;
- case OperationType:: CruseControlMode:
+    case OperationType::CruseControlMode:
+      lineFollower->LineFollowerModeRelease();
       automaticObstacleSensorMove->CruseControlModeStart();
       break;
- case OperationType::LineFollowerMode:
+    case OperationType::LineFollowerMode:
+      automaticObstacleSensorMove->CruseControlModeRelease();
       lineFollower->LineFollowerModeActivate();
       break;
     default:
@@ -130,5 +140,3 @@ void loop()
   }
   delay(100);
 }
-
- 
