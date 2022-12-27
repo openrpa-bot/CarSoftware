@@ -23,6 +23,9 @@ int IRRemoteReceiver::CheckIRRemoteOperationRequest(OperationRequest *operationR
   {
     Serial.println(IrReceiver.decodedIRData.decodedRawData, HEX);
     IrReceiver.printIRResultShort(&Serial);
+    if(IrReceiver.decodedIRData.decodedRawData == TV_REMOTE_POWERKEY){
+        Serial.println("Power Putton Cliced");
+    }
     IrReceiver.resume();
   }
 
