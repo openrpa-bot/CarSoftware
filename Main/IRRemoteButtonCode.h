@@ -45,4 +45,16 @@
 #define TV_REMOTE_text 0xDF20FB04
 #define TV_REMOTE_t_opt 0xDE21FB04
 
+#define TataSky_REMOTE_ 
+
+
+#define OnKYO_REMOTE_POWERKEY 0xFB042BD2
+#define OnKYO_REMOTE_dimmer 0xB9462BD2
+#define OnKYO_REMOTE_PLUS_slow 0xF40B2BD2
+#define OnKYO_REMOTE_Minus_slow 0x708F2BD2
+#define OnKYO_REMOTE_random 0xF50A2BD2
+#define OnKYO_REMOTE_Minus_step 0x718E2BD2
+#define OnKYO_REMOTE_plus_step 0xE21D2BD2
+#define OnKYO_REMOTE_ 2
+
 #endif
