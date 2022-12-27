@@ -42,6 +42,8 @@ void setup()
   servoOperations->setup();
   ultrasonicOperations->setup();
 
+  Serial.println("Setup finished.");
+
   LOG_Main("END");
 }
 
@@ -131,7 +133,7 @@ void loop()
       lineFollower->LineFollowerModeActivate();
       break;
     default:
-      SERIAL_PRINT("Received Undefined BlueTooth Command(Type, Speed):");
+      SERIAL_PRINT("Received Undefined Command(Type, Speed):");
       SERIAL_PRINT(operationRequest->operationType);
       SERIAL_PRINT(",");
       SERIAL_PRINTLN(operationRequest->operationRequestData.Speed);
