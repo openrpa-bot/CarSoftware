@@ -22,10 +22,10 @@ public:
     void turnLeft();
 
 private:
-    AF_DCMotor *m1 = NULL;
-    AF_DCMotor *m2 = NULL;
-    AF_DCMotor *m3 = NULL;
-    AF_DCMotor *m4 = NULL;
+    AF_DCMotor *m_DCMotor_Left_Front = NULL;
+    AF_DCMotor *m_DCMotor_Left_Back = NULL;
+    AF_DCMotor *m_DCMotor_Right_Front = NULL;
+    AF_DCMotor *m_DCMotor_Right_Back = NULL;
 
     int m_iMaxSpeed = 0;
     int m_iSpeedIncrement = 0;
