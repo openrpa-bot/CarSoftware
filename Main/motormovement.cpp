@@ -89,7 +89,7 @@ void MotorMovement::moveForward()
 {
   LOG_MotorMovement("MotorMovement::moveForward()");
 
-  if (!this->goesForward)
+  //if (!this->goesForward)
   {
     LOG_MotorMovement("It was not moving forward.");
     goesForward = true;
@@ -111,32 +111,25 @@ void MotorMovement::moveBackward()
   m_DCMotor_Right_Back->run(BACKWARD);
 }
 
+
 void MotorMovement::turnRight()
 {
   LOG_MotorMovement("MotorMovement::turnRight()");
 
-  m_DCMotor_Left_Front->run(FORWARD);
-  m_DCMotor_Left_Back->run(FORWARD);
-  m_DCMotor_Right_Front->run(RELEASE);
-  m_DCMotor_Right_Back->run(RELEASE);
-  delay(3000);
-  m_DCMotor_Left_Front->run(FORWARD);
-  m_DCMotor_Left_Back->run(FORWARD);
+  m_DCMotor_Left_Front->run(RELEASE);
+  m_DCMotor_Left_Back->run(BACKWARD);
   m_DCMotor_Right_Front->run(FORWARD);
-  m_DCMotor_Right_Back->run(FORWARD);
+  m_DCMotor_Right_Back->run(RELEASE);
+  
 }
 
 void MotorMovement::turnLeft()
 {
   LOG_MotorMovement("MotorMovement::turnLeft()");
 
-  m_DCMotor_Left_Front->run(RELEASE);
-  m_DCMotor_Left_Back->run(RELEASE);
-  m_DCMotor_Right_Front->run(FORWARD);
-  m_DCMotor_Right_Back->run(FORWARD);
-  delay(3000);
   m_DCMotor_Left_Front->run(FORWARD);
-  m_DCMotor_Left_Back->run(FORWARD);
-  m_DCMotor_Right_Front->run(FORWARD);
-  m_DCMotor_Right_Back->run(FORWARD);
+  m_DCMotor_Left_Back->run(RELEASE);
+  m_DCMotor_Right_Front->run(RELEASE);
+  m_DCMotor_Right_Back->run(BACKWARD);
+  
 }

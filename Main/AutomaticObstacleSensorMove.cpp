@@ -66,11 +66,15 @@ void AutomaticObstacleSensorMove::automatic()
     if (distanceR >= distanceL)
     {
       m_MotorMovement->turnRight();
+      delay(3000);
+      m_MotorMovement->moveForward();
       m_MotorMovement->Stop();
     }
     else
     {
       m_MotorMovement->turnLeft();
+      delay(3000);
+      m_MotorMovement->moveForward();
       m_MotorMovement->Stop();
     }
   }
