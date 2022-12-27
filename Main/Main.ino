@@ -96,10 +96,10 @@ void loop()
       motorMovement->moveBackward();
       break;
     case OperationType::LeftTurn:
-      motorMovement->moveBackward();
+      motorMovement->turnLeft();
       break;
     case OperationType::RightTurn:
-      motorMovement->moveBackward();
+      motorMovement->turnRight();
       break;
     case OperationType::DeeperOff:
       ledOperations->DeeparOff();

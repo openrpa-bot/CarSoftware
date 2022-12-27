@@ -6,14 +6,15 @@ BluetoothOperations::BluetoothOperations()
   LOG_BluetoothOperations("BluetoothOperations::BluetoothOperations()");
   //Serial1.begin(BLUETOOTH_PORT);
    m_SoftwareSerial = new SoftwareSerial(19, 18);
-   m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
+   //m_Bluetooth = new SoftwareSerial(BLUETOOTH_RX, BLUETOOTH_TX);// RX, TX
+   m_Bluetooth = new SoftwareSerial(0, 1);// RX, TX
 }
 
 void BluetoothOperations::setup()
 {  
   LOG_BluetoothOperations("BluetoothOperations::setup()");  
-  m_SoftwareSerial->begin(BLUETOOTH_PORT);
-  //m_Bluetooth->begin(BLUETOOTH_PORT);
+  //m_SoftwareSerial->begin(BLUETOOTH_PORT);
+  m_Bluetooth->begin(SERIAL_PORT);
 }
 
 void BluetoothOperations::loop()
@@ -21,18 +22,15 @@ void BluetoothOperations::loop()
   LOG_BluetoothOperations_LOOP("BluetoothOperations::loop()");
   //Serial1.println("Testing...");
   //m_SoftwareSerial->println("Testing...");
-  delay(500);
+  m_SoftwareSerial->println("Testing...");
+  delay(1500);
 }
 
 char BluetoothOperations::bluetoothRead(){
- /*if (Serial1.available() > 0)
+  if (m_Bluetooth->available() > 0)
   {
-   return Serial1.read();
+    return m_Bluetooth->read();
   }
-   if (m_Bluetooth->available() > 0)
-  {
-    char command = m_Bluetooth->read();
-    */
   return 0;
 }
 char BluetoothOperations::serialRead(){
@@ -58,7 +56,7 @@ int BluetoothOperations::CheckBluetoothOperationRequest(OperationRequest* operat
 
   if (command > 0)
   {
-    SERIAL_BLUETOOTH_PRINT("Received BlueTooth Command:"); SERIAL_BLUETOOTH_PRINTLN(command);
+    SERIAL_BLUETOOTH_PRINT("Received BlueTooth/Serial Command:"); SERIAL_BLUETOOTH_PRINTLN(command);
     switch (command)
     {
     case 'F':

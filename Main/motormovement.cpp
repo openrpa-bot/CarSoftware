@@ -62,7 +62,7 @@ void MotorMovement::Stop()
 
 void MotorMovement::Speed(OperationRequest *operationRequest)
 {
-  LOG_MotorMovement("MotorMovement::Speed()");
+  //LOG_MotorMovement("MotorMovement::Speed()");
 
   m1->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
   m2->setSpeed(operationRequest->operationRequestData.Speed * SPEED_WEIGHT);
@@ -103,9 +103,9 @@ void MotorMovement::turnRight()
 
   m1->run(FORWARD);
   m2->run(FORWARD);
-  m3->run(BACKWARD);
-  m4->run(BACKWARD);
-  delay(500);
+  m3->run(RELEASE);
+  m4->run(RELEASE);
+  delay(3000);
   m1->run(FORWARD);
   m2->run(FORWARD);
   m3->run(FORWARD);
@@ -116,11 +116,11 @@ void MotorMovement::turnLeft()
 {
   LOG_MotorMovement("MotorMovement::turnLeft()");
 
-  m1->run(BACKWARD);
-  m2->run(BACKWARD);
+  m1->run(RELEASE);
+  m2->run(RELEASE);
   m3->run(FORWARD);
   m4->run(FORWARD);
-  delay(500);
+  delay(3000);
   m1->run(FORWARD);
   m2->run(FORWARD);
   m3->run(FORWARD);
